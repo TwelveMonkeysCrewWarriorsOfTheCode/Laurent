@@ -36,17 +36,23 @@ namespace PalindromeProjectBLL
                     case "1":
                         Console.Write("\n    Entrez un mot ou un texte pour savoir si c'est un palindrome : ");
                         text = Console.ReadLine();
+                        // Appel de la méthode qui vérifie le texte saisi est un palindrome
                         result = Palindrome.Verification(text);
                         choiceDone = true;
                         break;
                     case "2":
-                        string filePath = FileOperation.FileWrite();
+                        // Appel de la méthode qui crée/écrase un fichier 
+                        string filePath = FileOperation.FileCreation();
+                        // Appel la méthode qui vérifie si le texte dans un fichier est un palindrome
                         result = Palindrome.VerificationFile(filePath);
                         choiceDone = true;
                         break;
                     case "3":
+                        // Appel de la méthode crée un liste des fichiers .txt dans le dossier dédié
                         string[] fileList = FileOperation.CreateFileList();
+                        // Appel de la méthode qui affiche la liste des fihiers .txt dans le dossier dédié
                         string fileChoice = Display.fileListDisplay(fileList);
+                        // Appel de la méthode qui vérifie si le texte dans un fichier est un palindrome
                         result = Palindrome.VerificationFile(fileChoice);
                         choiceDone = true;
                         break;
@@ -62,6 +68,7 @@ namespace PalindromeProjectBLL
 
         public static void Result(bool result)
         {
+            // Affiche le résultat de avec un bool venant de la méthode Palindrome.Verification() ou Palindrome.VerificationFile()
             if (result)
             {
                 Console.WriteLine("\n    Ceci est un palindrome");
@@ -70,6 +77,7 @@ namespace PalindromeProjectBLL
             {
                 Console.WriteLine("\n    Ceci n'est pas un palindrome");
             }
+            // Appel la méthode qui fait un arrêt jusqu'à ce qu'on l'on appuie sur une touche
             MenuReturn();
         }
 
@@ -78,6 +86,8 @@ namespace PalindromeProjectBLL
             bool choiceDone = false;
             string choice = "";
 
+            // Affiche la liste des fichiers textes dans le dossier dédié crée par la méthode CreateFileList()
+            // qui renvoi un tableau de string qui contient le chemin complet du fichier . txt
             while (!choiceDone)
             {
                 int i = 0;
@@ -128,8 +138,6 @@ namespace PalindromeProjectBLL
             {
                 fileChoice = fileList[int.Parse(choice) - 1];
             }
-            
-
             return fileChoice;
         }
 

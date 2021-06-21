@@ -16,7 +16,7 @@ namespace PalindromeProjectBLL
                 
                 if (isNotLetter)
                 {
-                    cleanText += text[i];
+                    cleanText += Char.ToLower(text[i]);
                 }
             }
             return cleanText;

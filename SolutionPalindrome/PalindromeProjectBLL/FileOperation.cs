@@ -5,10 +5,9 @@ namespace PalindromeProjectBLL
 {
     public class FileOperation
     {
-        public static string FileWrite()
+        public static string FileCreation()
         {
-            string filePath = "C:\\Users\\Laurent\\Desktop\\Dev.NET-SquareCode\\C#\\SolutionPalindrome\\UnitTestProject\\"; 
-            string text = "";
+            string filePath = "C:\\Users\\Laurent\\Desktop\\Dev.NET-SquareCode\\C#\\SolutionPalindrome\\UnitTestProject\\";            
             string fileName = "";
             bool fileNameOk = false;
             bool fileExist = false;
@@ -66,12 +65,19 @@ namespace PalindromeProjectBLL
            
             filePath += fileName + ".txt";
 
+            FileWrite(filePath);
+
+            return filePath;
+        }
+
+        private static void FileWrite(string filePath)
+        {
             Console.Write("\n    Entrez le texte à sauvegarder :");
-            text = Console.ReadLine();
-            
+            string text = Console.ReadLine();
+
             try
             {
-                StreamWriter sw = new StreamWriter(filePath);                
+                StreamWriter sw = new StreamWriter(filePath);
                 sw.WriteLine(text);
                 sw.Close();
             }
@@ -80,8 +86,6 @@ namespace PalindromeProjectBLL
 
                 Console.WriteLine("Exception: " + e.Message);
             }
-
-            return filePath;
         }
 
         public static string[] CreateFileList()
