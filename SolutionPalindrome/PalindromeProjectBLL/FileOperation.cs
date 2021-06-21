@@ -7,6 +7,13 @@ namespace PalindromeProjectBLL
     {
         public static string FileCreation()
         {
+            // Crée ou écrasse un fichier texte avec un nom saisi
+            // Boucle while tant que l'on a pas choisi un nom de fichier inexistant,
+            // validé l'écrasement du fichier existant ou abandonné
+            // Boucle for qui permet de comparer le nom entré à la liste de fichier .txt existant
+            // Appel la méthode FileWrite() pour créer ou écrasser le fichier
+            // Renvoi le path 
+
             string filePath = "C:\\Users\\Laurent\\Desktop\\Dev.NET-SquareCode\\C#\\SolutionPalindrome\\UnitTestProject\\";            
             string fileName = "";
             bool fileNameOk = false;
@@ -37,21 +44,29 @@ namespace PalindromeProjectBLL
                 
                 while (!overwrite)
                 {
-                    Console.Write($"\n    Le fichier {fileName} existe déjà ! Voulez vous ecraser le fichier ? (Y/N)");
+                    Console.Write($"\n    Le fichier {fileName} existe déjà ! Voulez vous ecraser le fichier ou abandonner ? (Y/N/A)");
                     string responseOverwrite = Console.ReadLine();
 
-                    if (responseOverwrite == "y" || responseOverwrite == "n")
+                    if (char.ToLower(responseOverwrite[0]) == 'y' || char.ToLower(responseOverwrite[0]) == 'n' || char.ToLower(responseOverwrite[0]) == 'a')
                     {
-                        if (responseOverwrite == "y")
+                        if (char.ToLower(responseOverwrite[0]) == 'y')
                         {
-                            Console.WriteLine($"\n    Fichier {fileName} à été écrasé !");
+                            Console.WriteLine($"\n    Fichier {fileName} va être écrasé !");
                             Console.ReadKey();
                             fileNameOk = true;
                         }
                         else
                         {
-                            Console.Write("\n    Choisiez un autre nom de fichier");
-                            Console.ReadKey();
+                            if (char.ToLower(responseOverwrite[0]) == 'n')
+                            {
+                                Console.Write("\n    Choisiez un autre nom de fichier");
+                                Console.ReadKey();
+                            }
+                            else
+                            {
+                                Console.Write("\n    Retour vers le menu principal");
+                                Display.MenuReturn();
+                            }                            
                         }
                         overwrite = true;
                     }
@@ -72,6 +87,8 @@ namespace PalindromeProjectBLL
 
         private static void FileWrite(string filePath)
         {
+            // Enregistre le texte saisi dans un fichier .txt
+
             Console.Write("\n    Entrez le texte à sauvegarder :");
             string text = Console.ReadLine();
 
@@ -90,6 +107,8 @@ namespace PalindromeProjectBLL
 
         public static string[] CreateFileList()
         {
+            // Crée un tableau de string avec tous les fichier .txt dans le dossié dédié et retourne ce tableau
+
             string[] fileList = Directory.GetFiles(@"C:\Users\Laurent\Desktop\Dev.NET-SquareCode\C#\SolutionPalindrome\UnitTestProject\","*.txt");
             return fileList;
         }        

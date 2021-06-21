@@ -8,6 +8,9 @@ namespace PalindromeProjectBLL
     {
         public static void Menu()
         {
+            // Affiche le menu principal, le choix se fait par un switch qui se répete par un while
+            // tant que le choix ne se trouve pas dans la liste
+
             string text = "";
             bool result = false;
             bool choiceDone = false;
@@ -63,6 +66,8 @@ namespace PalindromeProjectBLL
                         break;
                 }
             }
+            // Appel la méthode qui affichera le résultat si le texte est un palindrome ou pas
+
             Display.Result(result);
         }
 
@@ -88,6 +93,9 @@ namespace PalindromeProjectBLL
 
             // Affiche la liste des fichiers textes dans le dossier dédié crée par la méthode CreateFileList()
             // qui renvoi un tableau de string qui contient le chemin complet du fichier . txt
+            // Boucle while que le choix n'est pas valide, doit être un chiffre et compris de 0 à la taille du tableau des path 
+            // si le choix est 0 revoit au menu principale sinon renvoit le path du fichier choisi
+
             while (!choiceDone)
             {
                 int i = 0;
@@ -141,8 +149,10 @@ namespace PalindromeProjectBLL
             return fileChoice;
         }
 
-        private static void MenuReturn()
+        public static void MenuReturn()
         {
+            //Permet un arrêt avant le retour au menu principal
+
             Console.Write("\n    Appuyez sur enter pour continuer\n");
             while (Console.ReadKey().Key != ConsoleKey.Enter) { }
             Menu();
