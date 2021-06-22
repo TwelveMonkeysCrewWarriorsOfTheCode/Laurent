@@ -22,9 +22,18 @@ namespace PalindromeProjectBLL
             while (!fileNameOk)
             {
                 string[] fileList = CreateFileList();
-                
-                Console.Write("\n    Etrez le nom du fichier à enregistrer :");
+
+                Console.Write("\n    Entrez le nom du fichier à enregistrer :");
                 fileName = Console.ReadLine();
+
+                while (String.IsNullOrEmpty(fileName))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\n    Vous n'avez rien ecris !");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("\n    Entrez le nom du fichier à enregistrer :");
+                    fileName = Console.ReadLine();
+                }                
 
                 for (int i = 0; i < fileList.Length; i++)
                 {   
@@ -51,7 +60,9 @@ namespace PalindromeProjectBLL
                     {
                         if (char.ToLower(responseOverwrite[0]) == 'y')
                         {
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
                             Console.WriteLine($"\n    Fichier {fileName} va être écrasé !");
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.ReadKey();
                             fileNameOk = true;
                         }
@@ -72,7 +83,9 @@ namespace PalindromeProjectBLL
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
                         Console.Write("\n    Votre choix n'est pas valide !");
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadKey();
                     }
                 }   
@@ -89,7 +102,9 @@ namespace PalindromeProjectBLL
         {
             // Enregistre le texte saisi dans un fichier .txt
 
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write("\n    Entrez le texte à sauvegarder :");
+            Console.ForegroundColor = ConsoleColor.White;
             string text = Console.ReadLine();
 
             try
@@ -100,8 +115,10 @@ namespace PalindromeProjectBLL
             }
             catch (Exception e)
             {
-
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Le fichier n'a pas pu être crée !");
                 Console.WriteLine("Exception: " + e.Message);
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 

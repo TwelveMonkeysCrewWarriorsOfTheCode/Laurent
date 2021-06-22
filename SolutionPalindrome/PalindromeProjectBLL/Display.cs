@@ -20,15 +20,19 @@ namespace PalindromeProjectBLL
             while (!choiceDone)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("  ***************************************************");
+                Console.WriteLine("  |                  PALINDROME                     |");
+                Console.WriteLine("  |                  **********                     |");
                 Console.WriteLine("  |              Faites votre choix                 |");
                 Console.WriteLine("  ***************************************************");
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("  | 0 : Quitter                                     |");
                 Console.WriteLine("  | 1 : Tester en entrant au clavier                |");
                 Console.WriteLine("  | 2 : Tester en sauvegardant dans un fichier .txt |");
                 Console.WriteLine("  | 3 : Tester en chargeant un fichier .txt         |");
                 Console.WriteLine("  ***************************************************");
-
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("\n    Faites votre choix : ");
                 string choice = Console.ReadLine();
                 switch (choice)
@@ -61,7 +65,9 @@ namespace PalindromeProjectBLL
                         break;
 
                     default:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("\n    Votre choix n'est pas valide !");
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadLine();
                         break;
                 }
@@ -76,11 +82,15 @@ namespace PalindromeProjectBLL
             // Affiche le résultat de avec un bool venant de la méthode Palindrome.Verification() ou Palindrome.VerificationFile()
             if (result)
             {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.WriteLine("\n    Ceci est un palindrome");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("\n    Ceci n'est pas un palindrome");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             // Appel la méthode qui fait un arrêt jusqu'à ce qu'on l'on appuie sur une touche
             MenuReturn();
@@ -102,22 +112,35 @@ namespace PalindromeProjectBLL
 
                 Console.Clear();
 
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("  ***************************************************");
+                Console.WriteLine("  |                  PALINDROME                     |");
+                Console.WriteLine("  |                  **********                     |");
                 Console.WriteLine("  |              Faites votre choix                 |");
                 Console.WriteLine("  ***************************************************");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("    0 : Retour menu");
 
                 foreach (string file in fileList)
                 {
                     string fileWithoutPath = Path.GetFileName(file);
-                    Console.WriteLine($"    {i + 1} : {fileWithoutPath}");
+
+                    string alignNb = Convert.ToString(i + 1);
+                    for (int j = 0; j < 5 - alignNb.Length; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.Write($"{i + 1} : {fileWithoutPath}\n");
+                    
                     i++;
                 }
 
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("\n    Faites votre choix : ");
                 choice = Console.ReadLine();
 
-                if(choice.All(char.IsDigit))
+                if(choice.All(char.IsDigit) && !String.IsNullOrEmpty(choice))
                 {
                     if (int.Parse(choice) >= 0 && int.Parse(choice) < fileList.Length + 1)
                     {
@@ -125,14 +148,18 @@ namespace PalindromeProjectBLL
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.Write($"\n    Vous devez entrer un nombre entre 0 et {fileList.Length}");
                         Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.Write("\n    Vous devenez entrer un nombre");
                     Console.ReadLine();
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
 
@@ -153,7 +180,9 @@ namespace PalindromeProjectBLL
         {
             //Permet un arrêt avant le retour au menu principal
 
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write("\n    Appuyez sur enter pour continuer\n");
+            Console.ForegroundColor = ConsoleColor.White;
             while (Console.ReadKey().Key != ConsoleKey.Enter) { }
             Menu();
         }
