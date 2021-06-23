@@ -14,7 +14,7 @@ namespace PalindromeProjectBLL
             // Appel la méthode FileWrite() pour créer ou écrasser le fichier
             // Renvoi le path 
 
-            string filePath = "C:\\Users\\Laurent\\Desktop\\Dev.NET-SquareCode\\C#\\SolutionPalindrome\\UnitTestProject\\";            
+            string filePath = "..\\..\\..\\..\\UnitTestProject\\";            
             string fileName = "";
             bool fileNameOk = false;
             bool fileExist = false;
