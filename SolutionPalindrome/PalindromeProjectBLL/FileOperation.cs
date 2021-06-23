@@ -126,7 +126,7 @@ namespace PalindromeProjectBLL
         {
             // Crée un tableau de string avec tous les fichier .txt dans le dossié dédié et retourne ce tableau
 
-            string[] fileList = Directory.GetFiles(@"C:\Users\Laurent\Desktop\Dev.NET-SquareCode\C#\SolutionPalindrome\UnitTestProject\","*.txt");
+            string[] fileList = Directory.GetFiles(@"..\..\..\..\UnitTestProject\","*.txt");
             return fileList;
         }        
     }
