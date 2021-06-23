@@ -3,7 +3,7 @@ using System.Text;
 
 namespace PalindromeProjectBLL
 {
-    internal class Text
+    internal class HelperText
     {
         internal static string RemoveAllIsNotLetter(string pText)
         {  

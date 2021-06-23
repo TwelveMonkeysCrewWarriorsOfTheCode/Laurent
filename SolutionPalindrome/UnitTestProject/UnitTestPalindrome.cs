@@ -29,9 +29,9 @@ namespace UnitTestProject
             Assert.AreEqual(pExpectedValue, result);
         }
 
-        [DataRow(true, "..\\..\\..\\..\\Textes\\palindrome.txt", DisplayName ="cas avec fichier txt")]
-        [DataRow(true, "..\\..\\..\\..\\Textes\\palindromeMoyen.txt", DisplayName = "cas avec fichier txt moyen")]
-        [DataRow(true, "..\\..\\..\\..\\Textes\\palindromeComplexe.txt", DisplayName = "cas avec fichier txt difficile")]
+        [DataRow(true, @"..\..\..\..\Textes\palindrome.txt", DisplayName ="cas avec fichier txt")]
+        [DataRow(true, @"..\..\..\..\Textes\\palindromeMoyen.txt", DisplayName = "cas avec fichier txt moyen")]
+        [DataRow(true, @"..\..\..\..\Textes\\palindromeComplexe.txt", DisplayName = "cas avec fichier txt difficile")]
 
         [TestMethod]
 

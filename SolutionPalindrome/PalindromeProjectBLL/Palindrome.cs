@@ -14,11 +14,12 @@ namespace PalindromeProjectBLL
             // Si les 2 caractères sont égaux le bool devient true sinon devient false 
             // Renvoi un bool
 
-            bool isPalindrome = false;           
+            bool isPalindrome = true;           
 
-            string textRebuild = Text.RemoveAllIsNotLetter(pText);
-            
-            for (int i = 0; i < textRebuild.Length / 2; i++)
+            string textRebuild = HelperText.RemoveAllIsNotLetter(pText);
+
+            int i = 0;
+            while (isPalindrome == true && i < textRebuild.Length / 2)
             {
                 if (textRebuild[i] == textRebuild[textRebuild.Length -1 - i])
                 {
@@ -28,6 +29,7 @@ namespace PalindromeProjectBLL
                 {
                     isPalindrome = false; 
                 }
+                i++;
             }           
             return isPalindrome;
         }

@@ -14,7 +14,7 @@ namespace PalindromeProjectBLL
             // Appel la méthode FileWrite() pour créer ou écrasser le fichier
             // Renvoi le path 
 
-            string filePath = "..\\..\\..\\..\\Textes\\";            
+            string filePath = @"..\..\..\..\Textes\";            
             string fileName = "";
             bool fileNameOk = false;
             bool fileExist = false;
