@@ -40,15 +40,14 @@ namespace ConsoleApplication
                         break;
                     case "1":
                         Console.WriteLine();
-                        Console.Write("    Entrez un mot ou un texte pour savoir si c'est un palindrome : ");
-                        string text = Console.ReadLine();
+                        string text = ReadConsole.TestingText();                                               
                         // Appel de la méthode qui vérifie le texte saisi est un palindrome
                         result = Palindrome.Verification(text);
                         choiceDone = true;
                         break;
                     case "2":
                         // Appel de la méthode qui crée/écrase un fichier 
-                        string filePath = FileReadConsole.FileWriteVisual();
+                        string filePath = ReadConsole.FileWriteVisual();
                         // Appel la méthode qui vérifie si le texte dans un fichier est un palindrome
                         result = Palindrome.VerificationFile(filePath);
                         choiceDone = true;
