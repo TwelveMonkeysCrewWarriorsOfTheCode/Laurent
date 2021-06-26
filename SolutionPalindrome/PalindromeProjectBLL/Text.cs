@@ -3,13 +3,13 @@ using System.Text;
 
 namespace PalindromeProjectBLL
 {
-    internal class Text
+    internal class HelperText
     {
-        internal static string RemoveAllIsNotLetter(string pText)
+        internal static string RemoveAllIsNotLetterOrNumber(string pText)
         {  
             // Dissocie l'accent de la lettre par la méthode Normalize puis par un boucle for
-            // recopie dans une nouvelle string si le caractére est une lettre grace à un bool,
-            // en minuscule et retourne le nouveau texte
+            // recopie dans une nouvelle string si le caractére est une lettre ou un nombre
+            // grace à un bool, en minuscule et retourne le nouveau texte.
 
             string text = pText.Normalize(NormalizationForm.FormD);
             string cleanText = "";
@@ -17,8 +17,9 @@ namespace PalindromeProjectBLL
             for (int i = 0; i < text.Length; i++)
             {
                 bool isNotLetter = Char.IsLetter(text[i]);
+                bool isNotNumber = Char.IsNumber(text[i]);
                 
-                if (isNotLetter)
+                if (isNotLetter || isNotNumber)
                 {
                     cleanText += Char.ToLower(text[i]);
                 }

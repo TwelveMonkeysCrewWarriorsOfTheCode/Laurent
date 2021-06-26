@@ -14,7 +14,8 @@ namespace UnitTestProject
         [DataRow(true, "Ce reptile lit Perec", DisplayName = "cas texte avec majuscule")] //cas n°6
         [DataRow(true, "La mariée ira mal" ,DisplayName = "cas texte avec accent")] //cas n°7
         [DataRow(true, "Et si l'arôme des bottes révèle madame, le verset t'obsède, moraliste !", DisplayName = "cas complet")] //cas n°8
-        [DataRow(false, "121", DisplayName = "")] //cas n°9
+        [DataRow(true, "121", DisplayName = "cas avec chiffre")] //cas n°9
+        [DataRow(false, "15487", DisplayName = "cas avec mauvais chiffre")]
 
         [TestMethod]
         public void PalindromeTestMethod(bool pExpectedValue ,string pText)
@@ -29,19 +30,19 @@ namespace UnitTestProject
             Assert.AreEqual(pExpectedValue, result);
         }
 
-        [DataRow(true, "C:\\Users\\Laurent\\Desktop\\Dev.NET-SquareCode\\C#\\SolutionPalindrome\\UnitTestProject\\palindrome.txt", DisplayName ="cas avec fichier txt")]
-        [DataRow(true, "C:\\Users\\Laurent\\Desktop\\Dev.NET-SquareCode\\C#\\SolutionPalindrome\\UnitTestProject\\palindromeMoyen.txt", DisplayName = "cas avec fichier txt moyen")]
-        [DataRow(true, "C:\\Users\\Laurent\\Desktop\\Dev.NET-SquareCode\\C#\\SolutionPalindrome\\UnitTestProject\\palindromeComplexe.txt", DisplayName = "cas avec fichier txt difficile")]
+        [DataRow(true, @"..\..\..\..\Textes\palindrome.txt", DisplayName ="cas avec fichier txt")]
+        [DataRow(true, @"..\..\..\..\Textes\palindromeMoyen.txt", DisplayName = "cas avec fichier txt moyen")]
+        [DataRow(true, @"..\..\..\..\Textes\palindromeComplexe.txt", DisplayName = "cas avec fichier txt difficile")]
 
         [TestMethod]
 
-        public void PalindromeFileTestMethod(bool pExpectedValue, string pText)
+        public void PalindromeFileTestMethod(bool pExpectedValue, string pPath)
         {
             //Arrengement
-            string text = pText;
+            string path = pPath;
 
             //Action
-            bool result = Palindrome.VerificationFile(text);
+            bool result = Palindrome.VerificationFile(path);
 
             //Assert
             Assert.AreEqual(pExpectedValue, result);
