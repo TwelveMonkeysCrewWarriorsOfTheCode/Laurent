@@ -14,7 +14,7 @@ namespace PalindromeProjectBLL
             // Appel la méthode FileWrite() pour créer ou écrasser le fichier
             // Renvoi le path 
 
-            string filePath = "C:\\Users\\Laurent\\Desktop\\Dev.NET-SquareCode\\C#\\SolutionPalindrome\\UnitTestProject\\";            
+            string filePath = @"..\..\..\..\Textes\";            
             string fileName = "";
             bool fileNameOk = false;
             bool fileExist = false;
@@ -126,7 +126,7 @@ namespace PalindromeProjectBLL
         {
             // Crée un tableau de string avec tous les fichier .txt dans le dossié dédié et retourne ce tableau
 
-            string[] fileList = Directory.GetFiles(@"C:\Users\Laurent\Desktop\Dev.NET-SquareCode\C#\SolutionPalindrome\UnitTestProject\","*.txt");
+            string[] fileList = Directory.GetFiles(@"..\..\..\..\Textes\","*.txt");
             return fileList;
         }        
     }

@@ -14,8 +14,14 @@ namespace PalindromeProjectBLL
             // Renvoi un bool
 
             bool isPalindrome = true;           
+<<<<<<< HEAD
             string textRebuild = HelperText.RemoveAllIsNotLetterOrNumber(pText);
 
+=======
+
+            string textRebuild = HelperText.RemoveAllIsNotLetter(pText);
+
+>>>>>>> 8669b0e5aceff66af4990fd7fbc503cdaec81695
             int i = 0;
             while (isPalindrome == true && i < textRebuild.Length / 2)
             {

@@ -31,8 +31,13 @@ namespace UnitTestProject
         }
 
         [DataRow(true, @"..\..\..\..\Textes\palindrome.txt", DisplayName ="cas avec fichier txt")]
+<<<<<<< HEAD
         [DataRow(true, @"..\..\..\..\Textes\palindromeMoyen.txt", DisplayName = "cas avec fichier txt moyen")]
         [DataRow(true, @"..\..\..\..\Textes\palindromeComplexe.txt", DisplayName = "cas avec fichier txt difficile")]
+=======
+        [DataRow(true, @"..\..\..\..\Textes\\palindromeMoyen.txt", DisplayName = "cas avec fichier txt moyen")]
+        [DataRow(true, @"..\..\..\..\Textes\\palindromeComplexe.txt", DisplayName = "cas avec fichier txt difficile")]
+>>>>>>> 8669b0e5aceff66af4990fd7fbc503cdaec81695
 
         [TestMethod]
 
