@@ -3,7 +3,7 @@ using PalindromeProjectBLL;
 
 namespace ConsoleApplication
 {
-    class ReadConsole
+    public class ReadConsole
     {
         public string Path;
         public string Name;
@@ -16,17 +16,17 @@ namespace ConsoleApplication
             Text = string.Empty;
         }
 
-        public static string TestingText()
+        public static ReadConsole TestingText(ReadConsole pText)
         {
-            ReadConsole textReaded = new ReadConsole();
+            ReadConsole File = pText;
 
             bool twoCaractAtLeast = false;
             while (!twoCaractAtLeast)
             {
                 Console.Write("    Entrez un mot ou un texte pour savoir si c'est un palindrome : ");
-                textReaded.Text = Console.ReadLine();
-                textReaded.Text = HelperText.RemoveAllIsNotLetterOrNumber(textReaded.Text);
-                if (textReaded.Text.Length > 1)
+                File.Text = Console.ReadLine();
+                File.Text = HelperText.RemoveAllIsNotLetterOrNumber(File.Text);
+                if (File.Text.Length > 1)
                 {
                     twoCaractAtLeast = true;
                 }
@@ -37,12 +37,12 @@ namespace ConsoleApplication
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
-            return textReaded.Text;
+            return File;
         }
-        
-        public static string FileWriteVisual()
+
+        public static ReadConsole FileWriteVisual()
         {
-            ReadConsole file = new ReadConsole();
+            ReadConsole File = new ReadConsole();
             
             bool fileNameOk = false;
 
@@ -50,9 +50,9 @@ namespace ConsoleApplication
             {
                 Console.WriteLine();
                 Console.Write("    Entrez le nom du fichier à enregistrer :");
-                file.Name = Console.ReadLine();
+                File.Name = Console.ReadLine();
 
-                while (String.IsNullOrEmpty(file.Name))
+                while (String.IsNullOrEmpty(File.Name))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine();
@@ -60,10 +60,10 @@ namespace ConsoleApplication
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine();
                     Console.Write("    Entrez le nom du fichier à enregistrer :");
-                    file.Name = Console.ReadLine();
+                    File.Name = Console.ReadLine();
                 }
 
-                bool fileExist = FileTest.CheckFileNameExist(file.Name);
+                bool fileExist = FileTest.CheckFileNameExist(File.Name);
                
                 bool overwrite = false;
 
@@ -76,7 +76,7 @@ namespace ConsoleApplication
                 while (!overwrite)
                 {
                     Console.WriteLine();
-                    Console.Write($"    Le fichier {file.Name} existe déjà ! Voulez vous ecraser le fichier ou abandonner ? (Y/N/A)");
+                    Console.Write($"    Le fichier {File.Name} existe déjà ! Voulez vous ecraser le fichier ou abandonner ? (Y/N/A)");
                     string responseOverwrite = Console.ReadLine();
 
                     if (char.ToLower(responseOverwrite[0]) == 'y' || char.ToLower(responseOverwrite[0]) == 'n' || char.ToLower(responseOverwrite[0]) == 'a')
@@ -85,7 +85,7 @@ namespace ConsoleApplication
                         {
                             Console.ForegroundColor = ConsoleColor.DarkGreen;
                             Console.WriteLine();
-                            Console.WriteLine($"    Fichier {file.Name} va être écrasé !");
+                            Console.WriteLine($"    Fichier {File.Name} va être écrasé !");
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.ReadKey();
                             fileNameOk = true;
@@ -117,12 +117,10 @@ namespace ConsoleApplication
                     }
                 }                                               
             }
-            
-            file.Path += file.Name + ".txt";
-            file.Text = TestingText();
-            FileTest.FileCreation(file.Path, file.Text);
-
-            return file.Path;
+            File.Path += File.Name + ".txt";
+            File = TestingText(File);
+            FileTest.FileCreation(File.Path, File.Text);
+            return File;
         }
     }
 }

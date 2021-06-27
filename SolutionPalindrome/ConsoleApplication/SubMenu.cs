@@ -5,7 +5,7 @@ namespace ConsoleApplication
 {   
     class SubMenu
     {
-        public static string fileListDisplay(string[] pFileList)
+        public static string FileListDisplay(string[] pFileList)
         {
             bool choiceDone = false;
             string choice = string.Empty;
@@ -79,7 +79,6 @@ namespace ConsoleApplication
         public static void MenuReturn()
         {
             //Permet un arrêt avant le retour au menu principal
-
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine();
             Console.Write("    Appuyez sur enter pour continuer");

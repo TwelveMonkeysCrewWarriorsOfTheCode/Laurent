@@ -40,23 +40,26 @@ namespace ConsoleApplication
                         break;
                     case "1":
                         Console.WriteLine();
-                        string text = ReadConsole.TestingText();                                               
+                        ReadConsole Text = new ReadConsole();
+                        // Appel de la méthode qui verifie si l'utilisateur entre au moins 2 lettres ou 2 chiffres
+                        // et instancie un objet de class ReadConsole 
+                        Text = ReadConsole.TestingText(Text);
                         // Appel de la méthode qui vérifie le texte saisi est un palindrome
-                        result = Palindrome.Verification(text);
+                        result = Palindrome.Verification(Text.Text);
                         choiceDone = true;
                         break;
                     case "2":
-                        // Appel de la méthode qui crée/écrase un fichier 
-                        string filePath = ReadConsole.FileWriteVisual();
-                        // Appel la méthode qui vérifie si le texte dans un fichier est un palindrome
-                        result = Palindrome.VerificationFile(filePath);
+                        // Appel de la méthode qui crée/écrase un fichier et instancie un objet de class ReadConsole                     
+                        ReadConsole File = ReadConsole.FileWriteVisual();
+                        // Appel la méthode qui vérifie si le texte dans un fichier est un palindrome en parametrant                      
+                        result = Palindrome.VerificationFile(File.Path);
                         choiceDone = true;
                         break;
                     case "3":
                         // Appel de la méthode crée un liste des fichiers .txt dans le dossier dédié
                         string[] fileList = FileTest.FileList();
                         // Appel de la méthode qui affiche la liste des fihiers .txt dans le dossier dédié
-                        string fileChoice = SubMenu.fileListDisplay(fileList);
+                        string fileChoice = SubMenu.FileListDisplay(fileList);
                         // Appel de la méthode qui vérifie si le texte dans un fichier est un palindrome
                         result = Palindrome.VerificationFile(fileChoice);
                         choiceDone = true;

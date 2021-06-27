@@ -1,6 +1,5 @@
 ﻿using System.IO;
 
-
 namespace PalindromeProjectBLL
 {
     public class FileTest
