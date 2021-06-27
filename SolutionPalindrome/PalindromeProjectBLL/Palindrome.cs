@@ -37,7 +37,7 @@ namespace PalindromeProjectBLL
         {
             // Met dans une string le contenu du fichier par le méthode ReadAllText()
             // Puis appel le méthode Verification() avec cette string et revoit un bool
-            string fileContent = File.ReadAllText(pfilePath); // probleme
+            string fileContent = File.ReadAllText(pfilePath);
             Console.WriteLine();
             Console.WriteLine($"    Le contenu de fichier {Path.GetFileName(pfilePath)} est : {fileContent}");
             bool isPalindrome = Verification(fileContent);
