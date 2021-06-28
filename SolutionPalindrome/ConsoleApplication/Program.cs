@@ -1,5 +1,6 @@
 ﻿using PalindromeProjectBLL;
 using System;
+using System.IO;
 
 namespace ConsoleApplication
 {
@@ -11,6 +12,7 @@ namespace ConsoleApplication
             // tant que le choix ne se trouve pas dans la liste
             bool result = false;
             bool choiceDone = false;
+            string fileContent = string.Empty;
 
             Console.Clear();
 
@@ -52,7 +54,8 @@ namespace ConsoleApplication
                         // Appel de la méthode qui crée/écrase un fichier et instancie un objet de class ReadConsole                     
                         ReadConsole File = ReadConsole.FileWriteVisual();
                         // Appel la méthode qui vérifie si le texte dans un fichier est un palindrome en parametrant                      
-                        result = Palindrome.VerificationFile(File.Path);
+                        fileContent = Palindrome.VerificationFile(File.Path);
+                        result = Palindrome.Verification(File.Text);
                         choiceDone = true;
                         break;
                     case "3":
@@ -61,7 +64,11 @@ namespace ConsoleApplication
                         // Appel de la méthode qui affiche la liste des fihiers .txt dans le dossier dédié
                         string fileChoice = SubMenu.FileListDisplay(fileList);
                         // Appel de la méthode qui vérifie si le texte dans un fichier est un palindrome
-                        result = Palindrome.VerificationFile(fileChoice);
+                        fileContent = Palindrome.VerificationFile(fileChoice);
+                        Console.WriteLine();
+                        Console.WriteLine($"    Le contenu de fichier {Path.GetFileName(fileChoice)} est : {fileContent}");
+                        result = Palindrome.Verification(fileContent);
+                        //
                         choiceDone = true;
                         break;
 
@@ -75,7 +82,6 @@ namespace ConsoleApplication
                 }
             }
             // Appel la méthode qui affichera le résultat si le texte est un palindrome ou pas
-
             Result(result);
         }
 

@@ -35,6 +35,12 @@ namespace PalindromeProjectBLL
 
             string[] fileList = Directory.GetFiles(FILE_PATH, FILE_TYPE);
             return fileList;
-        }        
+        }  
+        
+        public static string ReadTextFile(string pfilePath)
+        {
+            string fileText = File.ReadAllText(pfilePath);
+            return fileText;
+        }
     }
 }
