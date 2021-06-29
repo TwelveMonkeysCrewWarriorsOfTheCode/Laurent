@@ -5,8 +5,8 @@ namespace PalindromeProjectBLL
 {
     public class FileOperation
     {
-        public const string FILE_PATH = @"..\..\..\..\Textes\";
-        public const string FILE_TYPE = "*.txt";
+        private const string FILE_PATH = @"..\..\..\..\Textes\";
+        private const string FILE_TYPE = "*.txt";
 
 
         public static void FileWrite(string pFilePath, string pText)

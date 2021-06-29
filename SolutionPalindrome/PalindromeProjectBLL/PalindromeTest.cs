@@ -3,7 +3,7 @@ using System.IO;
 
 namespace PalindromeProjectBLL
 {
-    public class Palindrome
+    public class PalindromeTest
     {
         public static bool Verification(string pText)
         {
@@ -36,14 +36,7 @@ namespace PalindromeProjectBLL
         public static string VerificationFile(string pfilePath)
         {
             // Met dans une string le contenu du fichier par le méthode ReadAllText()
-            // Puis appel le méthode Verification() avec cette string et revoit un bool
-            string fileContent = FileOperation.ReadTextFile(pfilePath);           
-            //FileList.WriteFileList()
-            
-            //Console.WriteLine();
-            //Console.WriteLine($"    Le contenu de fichier {Path.GetFileName(pfilePath)} est : {fileContent}");
-            //bool isPalindrome = Verification(fileContent);
-            
+            string fileContent = FileOperation.ReadTextFile(pfilePath);
             return fileContent;
         }        
     }

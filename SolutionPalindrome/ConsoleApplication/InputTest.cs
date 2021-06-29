@@ -3,30 +3,61 @@ using PalindromeProjectBLL;
 
 namespace ConsoleApplication
 {
-    public class ReadConsole
-    {
-        public string Path;
-        public string Name;
-        public string Text;
+    class InputTest
 
-        public ReadConsole()
+    {
+        private string m_Path;
+        private string m_Name;
+        private string m_Text;
+
+        public InputTest()
         {
-            Path = @"..\..\..\..\Textes\";
-            Name = string.Empty;
-            Text = string.Empty;
+            m_Path = @"..\..\..\..\Textes\";
+            m_Name = string.Empty;
+            m_Text = string.Empty;
         }
 
-        public static ReadConsole TestingText(ReadConsole pText)
+        public string Path
         {
-            ReadConsole File = pText;
+            get
+            {
+                return m_Path;
+            }
+            set
+            {
+                m_Path = value;
+            }
+        }
 
+        public string Name
+        {
+            get
+            {
+                return m_Name;
+            }
+        }
+
+        public string Text
+        {
+            get
+            {
+                return m_Text;
+            }
+            set
+            {
+                m_Text = value;
+            }
+        }
+
+        public void TestingText()
+        {
             bool twoCaractAtLeast = false;
             while (!twoCaractAtLeast)
             {
                 Console.Write("    Entrez un mot ou un texte pour savoir si c'est un palindrome : ");
-                File.Text = Console.ReadLine();
-                File.Text = HelperText.RemoveAllIsNotLetterOrNumber(File.Text);
-                if (File.Text.Length > 1)
+                m_Text = Console.ReadLine();
+                m_Text = HelperText.RemoveAllIsNotLetterOrNumber(m_Text);
+                if (m_Text.Length > 1)
                 {
                     twoCaractAtLeast = true;
                 }
@@ -37,22 +68,19 @@ namespace ConsoleApplication
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
-            return File;
         }
 
-        public static ReadConsole FileWriteVisual()
-        {
-            ReadConsole File = new ReadConsole();
-            
+        public void FileWriteVisual()
+        {           
             bool fileNameOk = false;
 
             while (!fileNameOk)
             {
                 Console.WriteLine();
                 Console.Write("    Entrez le nom du fichier à enregistrer :");
-                File.Name = Console.ReadLine();
+                m_Name = Console.ReadLine();
 
-                while (String.IsNullOrEmpty(File.Name))
+                while (String.IsNullOrEmpty(m_Name))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine();
@@ -60,10 +88,10 @@ namespace ConsoleApplication
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine();
                     Console.Write("    Entrez le nom du fichier à enregistrer :");
-                    File.Name = Console.ReadLine();
+                    m_Name = Console.ReadLine();
                 }
 
-                bool fileExist = FileTest.CheckFileNameExist(File.Name);
+                bool fileExist = FileTest.CheckFileNameExist(m_Name);
                
                 bool overwrite = false;
 
@@ -76,8 +104,9 @@ namespace ConsoleApplication
                 while (!overwrite)
                 {
                     Console.WriteLine();
-                    Console.Write($"    Le fichier {File.Name} existe déjà ! Voulez vous ecraser le fichier ou abandonner ? (Y/N/A)");
+                    Console.Write($"    Le fichier {m_Name} existe déjà ! Voulez vous ecraser le fichier ou abandonner ? (Y/N/A)");
                     string responseOverwrite = Console.ReadLine();
+                    if (responseOverwrite.Length == 0) responseOverwrite = "error";
 
                     if (char.ToLower(responseOverwrite[0]) == 'y' || char.ToLower(responseOverwrite[0]) == 'n' || char.ToLower(responseOverwrite[0]) == 'a')
                     {
@@ -85,7 +114,7 @@ namespace ConsoleApplication
                         {
                             Console.ForegroundColor = ConsoleColor.DarkGreen;
                             Console.WriteLine();
-                            Console.WriteLine($"    Fichier {File.Name} va être écrasé !");
+                            Console.WriteLine($"    Fichier {m_Name} va être écrasé !");
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.ReadKey();
                             fileNameOk = true;
@@ -117,10 +146,10 @@ namespace ConsoleApplication
                     }
                 }                                               
             }
-            File.Path += File.Name + ".txt";
-            File = TestingText(File);
-            FileTest.FileCreation(File.Path, File.Text);
-            return File;
+            
+            m_Path = m_Path + m_Name + ".txt";
+            TestingText();
+            FileTest.FileCreation(Path, Text);
         }
     }
 }

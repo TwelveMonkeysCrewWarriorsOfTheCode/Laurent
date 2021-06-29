@@ -5,10 +5,11 @@ namespace ConsoleApplication
 {   
     class SubMenu
     {
-        public static string FileListDisplay(string[] pFileList)
+        public static InputTest FileListDisplay(string[] pFileList)
         {
             bool choiceDone = false;
             string choice = string.Empty;
+            InputTest UserChoice = new InputTest();
 
             // Affiche la liste des fichiers textes dans le dossier dédié crée par la méthode CreateFileList()
             // qui renvoi un tableau de string qui contient le chemin complet du fichier . txt
@@ -62,17 +63,15 @@ namespace ConsoleApplication
                 }
             }
 
-            string fileChoice = string.Empty;
-
             if (choice == "0")
             {
                 Program.Main();
             }
             else
             {
-                fileChoice = pFileList[int.Parse(choice) - 1];
+                UserChoice.Path = pFileList[int.Parse(choice) - 1];
             }
-            return fileChoice;
+            return UserChoice;
         }
         
         

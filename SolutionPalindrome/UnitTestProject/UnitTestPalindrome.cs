@@ -24,7 +24,7 @@ namespace UnitTestProject
             string text = pText;
 
             //Action
-            bool result = Palindrome.Verification(text);
+            bool result = PalindromeTest.Verification(text);
 
             //Assert
             Assert.AreEqual(pExpectedValue, result);
@@ -42,7 +42,8 @@ namespace UnitTestProject
             string path = pPath;
 
             //Action
-            bool result = Palindrome.VerificationFile(path);
+            string text = FileOperation.ReadTextFile(path);
+            bool result = PalindromeTest.Verification(text);
 
             //Assert
             Assert.AreEqual(pExpectedValue, result);

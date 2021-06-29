@@ -12,7 +12,7 @@ namespace ConsoleApplication
             // tant que le choix ne se trouve pas dans la liste
             bool result = false;
             bool choiceDone = false;
-            string fileContent = string.Empty;
+            InputTest userInput = new InputTest();
 
             Console.Clear();
 
@@ -42,33 +42,34 @@ namespace ConsoleApplication
                         break;
                     case "1":
                         Console.WriteLine();
-                        ReadConsole Text = new ReadConsole();
                         // Appel de la méthode qui verifie si l'utilisateur entre au moins 2 lettres ou 2 chiffres
                         // et instancie un objet de class ReadConsole 
-                        Text = ReadConsole.TestingText(Text);
                         // Appel de la méthode qui vérifie le texte saisi est un palindrome
-                        result = Palindrome.Verification(Text.Text);
+                        userInput.TestingText();
+                        result = PalindromeTest.Verification(userInput.Text);
+                        //result = PalindromeTest.Verification(Text.Text);
                         choiceDone = true;
                         break;
                     case "2":
                         // Appel de la méthode qui crée/écrase un fichier et instancie un objet de class ReadConsole                     
-                        ReadConsole File = ReadConsole.FileWriteVisual();
+                        userInput.FileWriteVisual();
+                        //userInput = InputTest.FileWriteVisual();
                         // Appel la méthode qui vérifie si le texte dans un fichier est un palindrome en parametrant                      
-                        fileContent = Palindrome.VerificationFile(File.Path);
-                        result = Palindrome.Verification(File.Text);
+                        userInput.Text = PalindromeTest.VerificationFile(userInput.Path);
+                        Console.WriteLine($"    Le contenu de fichier {Path.GetFileName(userInput.Path)} est : {userInput.Text}");
+                        result = PalindromeTest.Verification(userInput.Text);
                         choiceDone = true;
                         break;
                     case "3":
                         // Appel de la méthode crée un liste des fichiers .txt dans le dossier dédié
                         string[] fileList = FileTest.FileList();
                         // Appel de la méthode qui affiche la liste des fihiers .txt dans le dossier dédié
-                        string fileChoice = SubMenu.FileListDisplay(fileList);
+                        userInput = SubMenu.FileListDisplay(fileList);
                         // Appel de la méthode qui vérifie si le texte dans un fichier est un palindrome
-                        fileContent = Palindrome.VerificationFile(fileChoice);
+                        userInput.Text = PalindromeTest.VerificationFile(userInput.Path);
                         Console.WriteLine();
-                        Console.WriteLine($"    Le contenu de fichier {Path.GetFileName(fileChoice)} est : {fileContent}");
-                        result = Palindrome.Verification(fileContent);
-                        //
+                        Console.WriteLine($"    Le contenu de fichier {Path.GetFileName(userInput.Path)} est : {userInput.Text}");
+                        result = PalindromeTest.Verification(userInput.Text);
                         choiceDone = true;
                         break;
 
