@@ -1,4 +1,5 @@
 ﻿using System;
+using PalindromeDTO;
 using PalindromeProjectBLL;
 
 namespace ConsoleApplication
@@ -6,58 +7,23 @@ namespace ConsoleApplication
     class InputTest
 
     {
-        private string m_Path;
-        private string m_Name;
-        private string m_Text;
-
-        public InputTest()
-        {
-            m_Path = @"..\..\..\..\Textes\";
-            m_Name = string.Empty;
-            m_Text = string.Empty;
-        }
-
-        public string Path
-        {
-            get
-            {
-                return m_Path;
-            }
-            set
-            {
-                m_Path = value;
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return m_Name;
-            }
-        }
-
-        public string Text
-        {
-            get
-            {
-                return m_Text;
-            }
-            set
-            {
-                m_Text = value;
-            }
-        }
-
-        public void TestingText()
+        /// <summary>
+        /// Teste si le texte entré contient au moins 2 caractères, si oui appel la
+        /// méthode RemoveAllIsNotLetterOrNumber qui nettoie la chaine de caractère 
+        /// des espaces, des caractères spéciaux  et des accents
+        /// </summary>
+        /// <param name="file">Objet FileDTO contenant string Path, string Name, string Text,
+        /// string[] ListFile, bool Result</param>
+        /// <returns>Objet FileDTO</returns>
+        public static FileDTO TestingText(FileDTO file)
         {
             bool twoCaractAtLeast = false;
             while (!twoCaractAtLeast)
             {
                 Console.Write("    Entrez un mot ou un texte pour savoir si c'est un palindrome : ");
-                m_Text = Console.ReadLine();
-                m_Text = HelperText.RemoveAllIsNotLetterOrNumber(m_Text);
-                if (m_Text.Length > 1)
+                file.Text = Console.ReadLine();
+                file.Text = HelperText.RemoveAllIsNotLetterOrNumber(file.Text);
+                if (file.Text.Length > 1)
                 {
                     twoCaractAtLeast = true;
                 }
@@ -66,11 +32,19 @@ namespace ConsoleApplication
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("    Vous devez au minimum entrez deux chiffres ou deux lettre !");
                     Console.ForegroundColor = ConsoleColor.White;
-                }
+                }               
             }
+            return file;
         }
 
-        public void FileWriteVisual()
+        /// <summary>
+        /// Teste si le nom de fichier existe déjà, si oui, propose d'ecraser ou non et d'abandonner
+        /// Met dans path le nom + .text
+        /// </summary>
+        /// <param name="file">Objet FileDTO contenant string Path, string Name, string Text,
+        /// string[] ListFile, bool Result</param>
+        /// <returns>Objet FileDTO</returns>
+        public static FileDTO FileWriteVisual(FileDTO file)
         {           
             bool fileNameOk = false;
 
@@ -78,9 +52,9 @@ namespace ConsoleApplication
             {
                 Console.WriteLine();
                 Console.Write("    Entrez le nom du fichier à enregistrer :");
-                m_Name = Console.ReadLine();
+                file.Name = Console.ReadLine();
 
-                while (String.IsNullOrEmpty(m_Name))
+                while (String.IsNullOrEmpty(file.Name))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine();
@@ -88,10 +62,10 @@ namespace ConsoleApplication
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine();
                     Console.Write("    Entrez le nom du fichier à enregistrer :");
-                    m_Name = Console.ReadLine();
+                    file.Name = Console.ReadLine();
                 }
 
-                bool fileExist = FileTest.CheckFileNameExist(m_Name);
+                bool fileExist = FileTest.CheckFileNameExist(file.Name);
                
                 bool overwrite = false;
 
@@ -104,7 +78,7 @@ namespace ConsoleApplication
                 while (!overwrite)
                 {
                     Console.WriteLine();
-                    Console.Write($"    Le fichier {m_Name} existe déjà ! Voulez vous ecraser le fichier ou abandonner ? (Y/N/A)");
+                    Console.Write($"    Le fichier {file.Name} existe déjà ! Voulez vous ecraser le fichier ou abandonner ? (Y/N/A)");
                     string responseOverwrite = Console.ReadLine();
                     if (responseOverwrite.Length == 0) responseOverwrite = "error";
 
@@ -114,7 +88,7 @@ namespace ConsoleApplication
                         {
                             Console.ForegroundColor = ConsoleColor.DarkGreen;
                             Console.WriteLine();
-                            Console.WriteLine($"    Fichier {m_Name} va être écrasé !");
+                            Console.WriteLine($"    Fichier {file.Name} va être écrasé !");
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.ReadKey();
                             fileNameOk = true;
@@ -131,7 +105,7 @@ namespace ConsoleApplication
                             {
                                 Console.WriteLine();
                                 Console.Write("    Retour vers le menu principal");
-                                SubMenu.MenuReturn();
+                                MenuOperation.MenuReturn();
                             }
                         }
                         overwrite = true;
@@ -147,9 +121,10 @@ namespace ConsoleApplication
                 }                                               
             }
             
-            m_Path = m_Path + m_Name + ".txt";
-            TestingText();
-            FileTest.FileCreation(Path, Text);
+            file.Path = file.Path + file.Name + ".txt";
+            file = TestingText(file);
+            FileTest.FileCreation(file);
+            return file;
         }
     }
 }

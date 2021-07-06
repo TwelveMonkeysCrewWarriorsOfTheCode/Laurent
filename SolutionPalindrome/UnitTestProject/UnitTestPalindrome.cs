@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PalindromeProjectBLL;
+using PalindromeProjectDAL;
 
 namespace UnitTestProject
 {      
@@ -15,7 +16,7 @@ namespace UnitTestProject
         [DataRow(true, "La mariée ira mal" ,DisplayName = "cas texte avec accent")] //cas n°7
         [DataRow(true, "Et si l'arôme des bottes révèle madame, le verset t'obsède, moraliste !", DisplayName = "cas complet")] //cas n°8
         [DataRow(true, "121", DisplayName = "cas avec chiffre")] //cas n°9
-        [DataRow(false, "15487", DisplayName = "cas avec mauvais chiffre")]
+        [DataRow(false, "15487", DisplayName = "cas avec mauvais chiffre")] //cas n°10
 
         [TestMethod]
         public void PalindromeTestMethod(bool pExpectedValue ,string pText)
