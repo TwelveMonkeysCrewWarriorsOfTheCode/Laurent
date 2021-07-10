@@ -15,7 +15,9 @@ namespace UsingParameters
             int numDivOrMult = 8;
             int timeInt = 786;
             int modulo = 60;
-            float timeFloat = 16.583334f;           
+            float timeFloat = 16.583334f;
+
+            Console.WriteLine(Time1);
 
             Time1 = new Time(time1Hour, time1Minute);
             Time2 = new Time(time2Hour, time2Minute);
@@ -50,6 +52,7 @@ namespace UsingParameters
             Console.WriteLine($"{Time1} {Time1 != Time2} {Time2}");
             //Result de % d'un Time
             Console.WriteLine($"{Time1} % {modulo} = {Time1 % modulo}");
+            Console.WriteLine($"dd {8/60}");
         }
     }
 }
