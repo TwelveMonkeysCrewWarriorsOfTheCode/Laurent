@@ -33,16 +33,18 @@ namespace PalindromeProjectBLL
             return isPalindrome;
         }
 
-        public static bool VerificationFile(string pfilePath)
+        public static string VerificationFile(string pfilePath)
         {
             // Met dans une string le contenu du fichier par le méthode ReadAllText()
             // Puis appel le méthode Verification() avec cette string et revoit un bool
-            string fileContent = File.ReadAllText(pfilePath);
-            Console.WriteLine();
-            Console.WriteLine($"    Le contenu de fichier {Path.GetFileName(pfilePath)} est : {fileContent}");
-            bool isPalindrome = Verification(fileContent);
+            string fileContent = FileOperation.ReadTextFile(pfilePath);           
+            //FileList.WriteFileList()
             
-            return isPalindrome;
+            //Console.WriteLine();
+            //Console.WriteLine($"    Le contenu de fichier {Path.GetFileName(pfilePath)} est : {fileContent}");
+            //bool isPalindrome = Verification(fileContent);
+            
+            return fileContent;
         }        
     }
 } 

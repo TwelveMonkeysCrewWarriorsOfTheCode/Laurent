@@ -1,25 +1,26 @@
-﻿using System;
+﻿using PalindromeDTO;
+using System;
+using System.IO;
 using System.Linq;
 
 namespace ConsoleApplication
 {   
-    class SubMenu
+    class ReadOnFileSubMenu
     {
-        public static InputTest FileListDisplay(string[] pFileList)
+        /// <summary>
+        /// Sous menu qui affiche la liste des fichers enregistrés et permet de choisir un fichier
+        /// </summary>
+        /// <param name="file">Objet FileDTO contenant string Path, string Name, string Text,
+        /// string[] ListFile, bool Result</param>
+        /// <returns>Objet FileDTO</returns>
+        public static FileDTO FileListDisplay(FileDTO file)
         {
             bool choiceDone = false;
             string choice = string.Empty;
-            InputTest UserChoice = new InputTest();
-
-            // Affiche la liste des fichiers textes dans le dossier dédié crée par la méthode CreateFileList()
-            // qui renvoi un tableau de string qui contient le chemin complet du fichier . txt
-            // Boucle while que le choix n'est pas valide, doit être un chiffre et compris de 0 à la taille du tableau des path 
-            // si le choix est 0 revoit au menu principale sinon renvoit le path du fichier choisi
 
             while (!choiceDone)
             {
                 Console.Clear();
-
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("  ***************************************************");
                 Console.WriteLine("  |                  PALINDROME                     |");
@@ -30,8 +31,7 @@ namespace ConsoleApplication
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("    0 : Retour menu");
 
-
-                string[] ListItemAlign = FileList.AlignItemsList(pFileList);
+                AlignItemsList(file);
                
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine();
@@ -40,7 +40,7 @@ namespace ConsoleApplication
 
                 if (choice.All(char.IsDigit) && !String.IsNullOrEmpty(choice))
                 {
-                    if (int.Parse(choice) >= 0 && int.Parse(choice) < pFileList.Length + 1)
+                    if (int.Parse(choice) >= 0 && int.Parse(choice) < file.ListFile.Length + 1)
                     {
                         choiceDone = true;
                     }
@@ -48,7 +48,7 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine();
-                        Console.Write($"    Vous devez entrer un nombre entre 0 et {pFileList.Length}");
+                        Console.Write($"    Vous devez entrer un nombre entre 0 et {file.ListFile.Length}");
                         Console.ReadLine();
                         Console.ForegroundColor = ConsoleColor.White;
                     }
@@ -69,22 +69,33 @@ namespace ConsoleApplication
             }
             else
             {
-                UserChoice.Path = pFileList[int.Parse(choice) - 1];
+                file.Path = file.ListFile[int.Parse(choice) - 1];
             }
-            return UserChoice;
+            return file;
         }
-        
-        
-        public static void MenuReturn()
+        /// <summary>
+        /// Aligne et affiche la liste des fichier .txt sans le path 
+        /// </summary>
+        /// <param name="file">Objet FileDTO contenant string Path, string Name, string Text,
+        /// string[] ListFile, bool Result</param>
+        public static void AlignItemsList(FileDTO file)
         {
-            //Permet un arrêt avant le retour au menu principal
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine();
-            Console.Write("    Appuyez sur enter pour continuer");
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.White;
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
-            Program.Main();
+            int i = 0;
+
+            foreach (string fileName in file.ListFile)
+            {
+                string fileWithoutPath = Path.GetFileName(fileName);
+                string alignNb = Convert.ToString(i + 1);
+
+                for (int j = 0; j < 5 - alignNb.Length; j++)
+                {
+                    Console.Write(" ");
+                }
+                Console.Write($"{i + 1} : {fileWithoutPath}");
+                Console.WriteLine();
+
+                i++;
+            }
         }
     }
 }

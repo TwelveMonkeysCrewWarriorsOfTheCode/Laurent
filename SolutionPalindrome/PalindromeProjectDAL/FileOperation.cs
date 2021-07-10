@@ -1,40 +1,44 @@
-﻿using System;
+﻿using PalindromeDTO;
+using System;
 using System.IO;
 
-namespace PalindromeProjectBLL
+namespace PalindromeProjectDAL
 {
     public class FileOperation
     {
-        public const string FILE_PATH = @"..\..\..\..\Textes\";
-        public const string FILE_TYPE = "*.txt";
+        private const string FILE_PATH = @"..\..\..\..\Textes\";
+        private const string FILE_TYPE = "*.txt";
 
-
-        public static void FileWrite(string pFilePath, string pText)
+        /// <summary>
+        /// Crée ou écrasse un fichier texte avec un nom saisi et
+        /// avec un nom saisi et y écrit le texte rentré par l'utilisateur
+        /// </summary>
+        /// <param name="file">Objet FileDTO</param>
+        public static void FileWrite(FileDTO file)
         {
-            // Crée ou écrasse un fichier texte avec un nom saisi et
-            // avec un nom saisi et y écrit le texte rentré par l'utilisateur
-
-            try
-            {
-                StreamWriter sw = new StreamWriter(pFilePath);
-                sw.WriteLine(pText);
-                sw.Close();
-            }
-            catch (Exception e)
-            {                
-                Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                Console.WriteLine("Le fichier n'a pas pu être crée !");
-                Console.WriteLine("Exception: " + e.Message);
-                Console.ForegroundColor = ConsoleColor.White;               
-            }
+            using StreamWriter sw = new(file.Path);
+            sw.WriteLine(file.Text);            
         }
 
+        /// <summary>
+        ///  Crée un tableau de string avec tous les fichier .txt dans le dossié dédié et retourne ce tableau
+        /// </summary>
+        /// <returns>string[] liste des fichiers txr</returns>
         public static string[] CreateFileList()
         {
-            // Crée un tableau de string avec tous les fichier .txt dans le dossié dédié et retourne ce tableau
-
             string[] fileList = Directory.GetFiles(FILE_PATH, FILE_TYPE);
             return fileList;
-        }        
+        }
+
+        /// <summary>
+        /// Lit le contenu du fichier txt
+        /// </summary>
+        /// <param name="pfilePath">string path du fichier txt</param>
+        /// <returns>string avec le contenu du fichier txt</returns>
+        public static string ReadTextFile(string pfilePath)
+        {
+            string fileText = File.ReadAllText(pfilePath);
+            return fileText;
+        }
     }
 }

@@ -1,28 +1,33 @@
-﻿using System.IO;
+﻿using PalindromeDTO;
+using PalindromeProjectDAL;
+using System.IO;
 
 namespace PalindromeProjectBLL
 {
     public class FileTest
     {
-        public string[] List;
-
-        public static void FileCreation(string pFilePath, string pText)
+        /// <summary>
+        /// Appel la fonction FileWrite() qui crée/écrase le fichier txt
+        /// avec le nom entré par l'utilisateur
+        /// </summary>
+        /// <param name="file">Objet FileDTO</param>
+        public static void FileCreation(FileDTO file)
         {
-            // Appel la méthode qui crée ou écrasse un fichier texte avec un nom saisi et
-            // avec un nom saisi et y écrit le texte rentré par l'utilisateur
-            FileOperation.FileWrite(pFilePath, pText);
+            FileOperation.FileWrite(file);
         }
 
+        /// <summary>
+        /// Crée une liste des fichiers txt par le méthode CreateFileList()
+        /// dans un tableau de string puis compare avec le nom entré par l'utilisateur
+        /// </summary>
+        /// <param name="pFileName">String nom du fichier txt</param>
+        /// <returns>bool=true si le nom existe déjà</returns>
         public static bool CheckFileNameExist(string pFileName)
         {
             bool fileExist = false;
 
-            // Appel la méthode qui crée la liste es fichiers existants
-            // récupérée dans un tableau
             string[] fileList = FileOperation.CreateFileList();
 
-            // For qui qui compare les éléments du tableau avec le nom entré
-            // par l'utilisateur et retourne un bool
             for (int i = 0; i < fileList.Length; i++)
             {
                 if (Path.GetFileName(fileList[i]) == pFileName + ".txt")
@@ -33,15 +38,16 @@ namespace PalindromeProjectBLL
             return fileExist;
         }
 
-        public static string[] FileList()
+        /// <summary>
+        /// Appel la méthode qui crée la liste des fichiers existants
+        /// récupéré dans un tableau et retourne ce tableau
+        /// </summary>
+        /// <param name="file">Objet FileDTO</param>
+        /// <returns>Objet FileDTO</returns>
+        public static FileDTO FileList(FileDTO file)
         {
-            FileTest createdList = new FileTest();
-
-            // Appel la méthode qui crée la liste des fichiers existants
-            // récupéré dans un tableau et retourne ce tableau
-            createdList.List = FileOperation.CreateFileList();
-
-            return createdList.List;
-        }       
+            file.ListFile = FileOperation.CreateFileList();
+            return file;
+        }
     }
 }
