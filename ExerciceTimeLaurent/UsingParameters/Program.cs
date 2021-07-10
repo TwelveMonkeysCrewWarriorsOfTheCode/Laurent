@@ -50,7 +50,6 @@ namespace UsingParameters
             Console.WriteLine($"{Time1} {Time1 != Time2} {Time2}");
             //Result de % d'un Time
             Console.WriteLine($"{Time1} % {modulo} = {Time1 % modulo}");
-            Console.WriteLine($"dd {8/60}");
         }
     }
 }
