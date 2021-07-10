@@ -17,8 +17,6 @@ namespace UsingParameters
             int modulo = 60;
             float timeFloat = 16.583334f;
 
-            Console.WriteLine(Time1);
-
             Time1 = new Time(time1Hour, time1Minute);
             Time2 = new Time(time2Hour, time2Minute);
 
