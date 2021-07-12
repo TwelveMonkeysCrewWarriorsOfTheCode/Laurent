@@ -7,7 +7,7 @@ namespace UsingParameters
     public class Time
     {
         private const int MINUTES_IN_HOUR = 60;
-        private int m_TotalMinutes;
+        private readonly int m_TotalMinutes;
 
         #region Propriétés
         public int Hour => m_TotalMinutes / MINUTES_IN_HOUR;
@@ -17,12 +17,11 @@ namespace UsingParameters
         #region Constructeur
         public Time(int pTimeMinute) => m_TotalMinutes = pTimeMinute;
         public Time(float pTimeFloat) => m_TotalMinutes = (int)(Math.Round(pTimeFloat * MINUTES_IN_HOUR));
-        public Time(int pHour, int pMinute) => ParseTimeToMinute(pHour, pMinute);
+        public Time(int pHour, int pMinute) => m_TotalMinutes = pHour * MINUTES_IN_HOUR + pMinute;
         #endregion
 
 
         #region Méthodes
-        private void ParseTimeToMinute(int pHour, int pMinute) => m_TotalMinutes = pHour * MINUTES_IN_HOUR + pMinute;
         public override string ToString() => $"{Hour:##00}:{Minute:00} min"; 
         #endregion
 
@@ -140,7 +139,7 @@ namespace UsingParameters
         /// <param name="time">Time</param>
         /// <param name="modulo">int</param>
         /// <returns>int</returns>
-        public static int operator %(Time time, int modulo) => time.m_TotalMinutes % modulo; 
+        public static int operator %(Time time, int modulo) => (int)time % modulo; 
         #endregion
     }
 }
