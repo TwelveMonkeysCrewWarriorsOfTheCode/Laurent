@@ -20,7 +20,6 @@ namespace UsingParameters
         public Time(int pHour, int pMinute) => m_TotalMinutes = pHour * MINUTES_IN_HOUR + pMinute;
         #endregion
 
-
         #region Méthodes
         public override string ToString() => $"{Hour:##00}:{Minute:00} min"; 
         #endregion
@@ -114,7 +113,7 @@ namespace UsingParameters
         /// <returns>bool</returns>
         public static bool operator >=(Time pTimeLeft, Time pTimeRight) => (int)pTimeLeft >= (int)pTimeRight;
 
-        // Teste sans retourner un bool mais une string
+        // Test sans retourner un bool mais une string
         
         /// <summary>
         /// Compare si time == time2
@@ -131,7 +130,7 @@ namespace UsingParameters
         /// <returns>string si != vrai alors " n'est pas égal à " sinon " est égal à "</returns>
         public static string operator !=(Time pTimeLeft, Time pTimeRight) => ((int)pTimeLeft != (int)pTimeRight) ? "n'est pas égal à" : "est égal à";
 
-        // Fin teste
+        // Fin test
 
         /// <summary>
         /// Fait le modulo d'un time
