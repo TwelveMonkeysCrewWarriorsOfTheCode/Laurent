@@ -6,31 +6,22 @@ namespace UsingParameters
 {
     public class Time
     {
-        //(*2*) Chiffre magique
-        const int MINUTES_IN_HOUR = 60;
-        //Variable accessible seulement dans la class Time implémenté par un constructeur  
-        //Est implémenté quand vous assigné un objet Time(int, int)(*1*) ou Time(int)(*3*) ou Time(float)(*4*)
+        private const int MINUTES_IN_HOUR = 60;
         private int m_TotalMinutes;
 
         #region Propriétés
-        //Transforme m_TotalMinutes en heure par une division entière (exemple : m_TotalMinutes(127)/MINUTES_IN_HOUR(*2*) = 2, Hour = 2)
         public int Hour => m_TotalMinutes / MINUTES_IN_HOUR;
-        //Transforme m_TotalMinutes en minute par un modulo (exemple : m_TotalMinutes(127) % MINUTES_IN_HOUR(*2*) = 7, Minute = 7)
         public int Minute => m_TotalMinutes % MINUTES_IN_HOUR;
         #endregion
 
         #region Constructeur
-        //(*3*)
         public Time(int pTimeMinute) => m_TotalMinutes = pTimeMinute;
-        //(*4*)
         public Time(float pTimeFloat) => m_TotalMinutes = (int)(Math.Round(pTimeFloat * MINUTES_IN_HOUR));
-        //(*1*)Implémente le variable m_TotalMinutes par la méthode ParseTimeToMinute(int, int)
         public Time(int pHour, int pMinute) => ParseTimeToMinute(pHour, pMinute);
         #endregion
 
 
         #region Méthodes
-        //(*1*)Méthode qui implémente m_TotalMinutes avec les heures transformées en minutes et les minutes de l'objet Time
         private void ParseTimeToMinute(int pHour, int pMinute) => m_TotalMinutes = pHour * MINUTES_IN_HOUR + pMinute;
         public override string ToString() => $"{Hour:##00}:{Minute:00} min"; 
         #endregion
@@ -98,7 +89,7 @@ namespace UsingParameters
         /// <param name="pTimeLeft">Time</param>
         /// <param name="pTimeRight">Time</param>
         /// <returns>bool</returns>
-        public static bool operator <(Time pTimeLeft, Time pTimeRight) => pTimeLeft.m_TotalMinutes < pTimeRight.m_TotalMinutes;
+        public static bool operator <(Time pTimeLeft, Time pTimeRight) => (int)pTimeLeft < (int)pTimeRight;
 
         /// <summary>
         /// Compare si Time1 > Time2
@@ -106,7 +97,7 @@ namespace UsingParameters
         /// <param name="pTimeLeft">Time</param>
         /// <param name="pTimeRight">Time</param>
         /// <returns>bool</returns>
-        public static bool operator >(Time pTimeLeft, Time pTimeRight) => pTimeLeft.m_TotalMinutes > pTimeRight.m_TotalMinutes;
+        public static bool operator >(Time pTimeLeft, Time pTimeRight) => (int)pTimeLeft > (int)pTimeRight;
 
         /// <summary>
         /// Compare si Time1 <= Time2
@@ -114,7 +105,7 @@ namespace UsingParameters
         /// <param name="pTimeLeft">Time</param>
         /// <param name="pTimeRight">Time</param>
         /// <returns>bool</returns>
-        public static bool operator <=(Time pTimeLeft, Time pTimeRight) => pTimeLeft.m_TotalMinutes <= pTimeRight.m_TotalMinutes;
+        public static bool operator <=(Time pTimeLeft, Time pTimeRight) => (int)pTimeLeft <= (int)pTimeRight;
 
         /// <summary>
         /// Compare si Time1 >= Time2
@@ -122,7 +113,7 @@ namespace UsingParameters
         /// <param name="pTimeLeft">Time</param>
         /// <param name="pTimeRight">Time</param>
         /// <returns>bool</returns>
-        public static bool operator >=(Time pTimeLeft, Time pTimeRight) => pTimeLeft.m_TotalMinutes >= pTimeRight.m_TotalMinutes;
+        public static bool operator >=(Time pTimeLeft, Time pTimeRight) => (int)pTimeLeft >= (int)pTimeRight;
 
         // Teste sans retourner un bool mais une string
         
@@ -132,14 +123,14 @@ namespace UsingParameters
         /// <param name="pTimeLeft">Time</param>
         /// <param name="pTimeRight">Time</param>
         /// <returns>string si == vrai alors " est égal à " sinon " n'est pas égal à "</returns>
-        public static string operator ==(Time pTimeLeft, Time pTimeRight) => (pTimeLeft.m_TotalMinutes == pTimeRight.m_TotalMinutes) ? "est égal à" : "n'est pas égal à";
+        public static string operator ==(Time pTimeLeft, Time pTimeRight) => ((int)pTimeLeft == (int)pTimeRight) ? "est égal à" : "n'est pas égal à";
         /// <summary>
         /// Compare si time != time2
         /// </summary>
         /// <param name="pTimeLeft">Time</param>
         /// <param name="pTimeRight">Time</param>
         /// <returns>string si != vrai alors " n'est pas égal à " sinon " est égal à "</returns>
-        public static string operator !=(Time pTimeLeft, Time pTimeRight) => (pTimeLeft.m_TotalMinutes != pTimeRight.m_TotalMinutes) ? "n'est pas égal à" : "est égal à";
+        public static string operator !=(Time pTimeLeft, Time pTimeRight) => ((int)pTimeLeft != (int)pTimeRight) ? "n'est pas égal à" : "est égal à";
 
         // Fin teste
 
