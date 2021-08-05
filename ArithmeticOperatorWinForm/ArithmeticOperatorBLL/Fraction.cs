@@ -52,14 +52,17 @@ namespace ArithmeticOperatorBLL
         /// <param name="pFractionFloat"></param>
         public Fraction(decimal pFractionFloat)
         {
-            int DecimalSize = Convert.ToString(pFractionFloat).Length;
-            Denominator = 1;
-            for (int i = 0; i < DecimalSize; i++)
+            int i = 0;
+            Numerator = 1;
+            while(pFractionFloat % 1 == 0 || i == 7)
             {
                 pFractionFloat *= 10;
-                Denominator *= 10;
+                Numerator *= 10;
             }
-            Numerator = (int)pFractionFloat;
+            string fraction = Convert.ToString(pFractionFloat);
+            int indexPoint = fraction.IndexOf('.');
+            fraction = fraction.Substring(0, '.');
+            Denominator = Convert.ToInt32(fraction);
             this.MinimunDenominator();
         }
         #endregion
