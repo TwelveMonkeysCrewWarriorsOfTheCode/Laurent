@@ -47,9 +47,9 @@ namespace ArithmeticOperatorBLL
         }
 
         /// <summary>
-        /// Transforme une décimal en fraction
+        /// Transforme une décimal en fraction et le signe négatif
         /// </summary>
-        /// <param name="pFractionFloat"></param>
+        /// <param name="pFractionFloat">decimal</param>
         public Fraction(decimal pFractionFloat)
         {
             bool IsNegative = (pFractionFloat < 0);
@@ -112,14 +112,16 @@ namespace ArithmeticOperatorBLL
             int i = 1;
             int maxDivider = 1;
             
-            
-            while (i / Denominator != 1 && i / Numerator != 1)
+            if(Numerator != 0)
             {
-                i++;
-                if (Denominator % i == 0 && Numerator % i == 0) maxDivider = i;               
-            }
-            Numerator /= maxDivider;
-            Denominator /= maxDivider;
+                while (i / Denominator != 1 && i / Numerator != 1)
+                {
+                    i++;
+                    if (Denominator % i == 0 && Numerator % i == 0) maxDivider = i;
+                }
+                Numerator /= maxDivider;
+                Denominator /= maxDivider;
+            }            
         }
 
         /// <summary>
@@ -192,9 +194,10 @@ namespace ArithmeticOperatorBLL
         public override int GetHashCode() => Numerator.GetHashCode() ^ Denominator.GetHashCode();
 
         /// <summary>
-        /// 
+        /// Crée un formatage de Tostring pour une fraction
+        /// format sans l'entieer si il est à 0
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         public override string ToString() => (Integer != 0) ? $"{Integer} : {Numerator}/{Denominator}" : $" {Numerator}/{Denominator}";
         #endregion
 
@@ -204,8 +207,15 @@ namespace ArithmeticOperatorBLL
         {
             if (pFraction.Integer < 0 && pFraction.Numerator > 0) pFraction.Numerator = -pFraction.Numerator;
             return ((decimal)pFraction.Numerator / pFraction.Denominator) + pFraction.Integer;
-        }    
-            
+        }
+
+        /// <summary>
+        /// Surcharge de l'opérateur + pour l'addition de 2 fractions
+        /// Gère le signe négatif dans le cadre de l'addition
+        /// </summary>
+        /// <param name="pFraction1">Fraction</param>
+        /// <param name="pFraction2">Fraction</param>
+        /// <returns>Fraction<returns>
         public static Fraction operator +(Fraction pFraction1, Fraction pFraction2)
         {
             if(pFraction1.Integer < 0 && pFraction1.Numerator > 0) pFraction1.Numerator = -pFraction1.Numerator;
