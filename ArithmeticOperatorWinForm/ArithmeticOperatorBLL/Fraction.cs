@@ -52,17 +52,18 @@ namespace ArithmeticOperatorBLL
         /// <param name="pFractionFloat"></param>
         public Fraction(decimal pFractionFloat)
         {
+            string fraction = Convert.ToString(pFractionFloat);
+            if (!int.TryParse(fraction.Substring(0,'.'), out Integer))throw new ArgumentOutOfRangeException("Impossible de transformer la partie entière de la decimal en int");
+            bool parseToInt = int.TryParse(fraction.Substring('.', fraction.Length), out Denominator);
+            if (!parseToInt) parseToInt = int.TryParse(fraction.Substring('.', 9), out Denominator);
+
             int i = 0;
             Numerator = 1;
-            while(pFractionFloat % 1 == 0 || i == 7)
-            {
-                pFractionFloat *= 10;
+            while (i != Convert.ToString(Denominator).Length)
+            {                
                 Numerator *= 10;
-            }
-            string fraction = Convert.ToString(pFractionFloat);
-            int indexPoint = fraction.IndexOf('.');
-            fraction = fraction.Substring(0, '.');
-            Denominator = Convert.ToInt32(fraction);
+                i++;
+            }            
             this.MinimunDenominator();
         }
         #endregion
