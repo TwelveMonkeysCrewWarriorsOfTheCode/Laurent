@@ -42,7 +42,7 @@ namespace ArithmeticOperatorBLL
         public Fraction(int pIntNum, int pNumerator, int pDenominator)
         {
             if (pDenominator == 0) throw new ArgumentException("Denominator == 0");
-            this.NegativeVerification(pNumerator, pDenominator);
+            this.NegativeVerification(pIntNum, pNumerator, pDenominator);
             Integer = pIntNum;
         }
 
@@ -52,19 +52,36 @@ namespace ArithmeticOperatorBLL
         /// <param name="pFractionFloat"></param>
         public Fraction(decimal pFractionFloat)
         {
-            string fraction = Convert.ToString(pFractionFloat);
-            if (!int.TryParse(fraction.Substring(0,'.'), out Integer))throw new ArgumentOutOfRangeException("Impossible de transformer la partie entière de la decimal en int");
-            bool parseToInt = int.TryParse(fraction.Substring('.', fraction.Length), out Denominator);
-            if (!parseToInt) parseToInt = int.TryParse(fraction.Substring('.', 9), out Denominator);
+            bool IsNegative = (pFractionFloat < 0);
+            if (IsNegative) pFractionFloat = -pFractionFloat;
+            
+            string fraction = Convert.ToString(pFractionFloat);                                  
+            int pointPosition = fraction.IndexOf(",");
+            
+            if (pointPosition == -1 || pointPosition > 1)
+            {
+                 if(!int.TryParse(fraction, out Integer)) throw new ArgumentOutOfRangeException("Impossible de transformer la partie entière de la decimal en int");              
+            }
+            else Integer = (int)Char.GetNumericValue(fraction[0]);
+
+            bool parseToInt = int.TryParse(fraction.Substring(pointPosition + 1), out Numerator);
+            if (!parseToInt) int.TryParse(fraction.Substring(pointPosition + 1,9), out Numerator);
 
             int i = 0;
-            Numerator = 1;
-            while (i != Convert.ToString(Denominator).Length)
+            Denominator = 1;
+            while (i != Convert.ToString(Numerator).Length)
             {                
-                Numerator *= 10;
+                Denominator *= 10;
                 i++;
-            }            
+            }
+
+            if (IsNegative)
+            {
+                if (Integer != 0) Integer = -Integer;
+                Numerator = -Numerator;
+            }
             this.MinimunDenominator();
+            if (Integer < 0 && Numerator < 0) Numerator = -Numerator;
         }
         #endregion
 
@@ -94,17 +111,19 @@ namespace ArithmeticOperatorBLL
         {
             int i = 1;
             int maxDivider = 1;
-            while (i <= Denominator && i <= Numerator)
+            
+            
+            while (i / Denominator != 1 && i / Numerator != 1)
             {
-                if (Denominator % i == 0 && Numerator % i == 0) maxDivider = i;
                 i++;
+                if (Denominator % i == 0 && Numerator % i == 0) maxDivider = i;               
             }
             Numerator /= maxDivider;
             Denominator /= maxDivider;
         }
 
         /// <summary>
-        /// Gère les signes négatif de la fraction 
+        /// Gère les signes négatif de la fraction à 2 arguments
         /// </summary>
         /// <param name="pNumerator">Numérateur</param>
         /// <param name="pDenominator">Dénominateur</param>
@@ -121,6 +140,27 @@ namespace ArithmeticOperatorBLL
                 Denominator = -pDenominator;
             }
         }
+
+        /// <summary>
+        /// Gère les signes négatif de la fraction à 3 arguments
+        /// </summary>
+        /// <param name="pInteger">int</param>
+        /// <param name="pNumerator">int</param>
+        /// <param name="pDenominator">int</param>
+        private void NegativeVerification(int pInteger, int pNumerator, int pDenominator)
+        {
+            if (pDenominator > 0)
+            {
+                Numerator = pNumerator;
+                Denominator = pDenominator;
+            }
+            else
+            {
+                Numerator = -pNumerator;
+                Denominator = -pDenominator;
+            }            
+        }
+
         /// <summary>
         /// Soustrait le 1er numérateur au 2ème après avoir trouver le denomonateur commun
         /// Si revoi 0 les 2 fraction sont égales
@@ -159,10 +199,17 @@ namespace ArithmeticOperatorBLL
         #endregion
 
         #region Operators
-        public static explicit operator decimal(Fraction pFraction) => ((decimal)pFraction.Numerator / pFraction.Denominator) + pFraction.Integer;
+        public static explicit operator decimal(Fraction pFraction)
 
+        {
+            if (pFraction.Integer < 0 && pFraction.Numerator > 0) pFraction.Numerator = -pFraction.Numerator;
+            return ((decimal)pFraction.Numerator / pFraction.Denominator) + pFraction.Integer;
+        }    
+            
         public static Fraction operator +(Fraction pFraction1, Fraction pFraction2)
         {
+            if(pFraction1.Integer < 0 && pFraction1.Numerator > 0) pFraction1.Numerator = -pFraction1.Numerator;
+            if (pFraction2.Integer < 0 && pFraction2.Numerator > 0) pFraction2.Numerator = -pFraction2.Numerator;
             Fraction Fraction1 = CommonDenominator(pFraction1, pFraction2);
             Fraction Fraction2 = CommonDenominator(pFraction2, pFraction1);
             Fraction FractionResult = new(Fraction1.Numerator + Fraction2.Numerator, Fraction1.Denominator);

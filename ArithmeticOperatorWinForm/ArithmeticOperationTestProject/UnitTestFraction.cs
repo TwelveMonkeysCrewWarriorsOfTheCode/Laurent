@@ -103,9 +103,9 @@ namespace ArithmeticOperationTestProject
         }
 
         ///Testes conversion de Decimal en Fraction
-        [DataRow(0, 1, 2)]
-        [DataRow(0, 1, 3)]
-        [DataRow(2, -2, 5)]
+        [DataRow(0, -1, 2)]
+        [DataRow(0, 1, 4)]
+        [DataRow(-2, 1, 5)]
 
         [TestMethod]
         public void ConversionFloatToFraction(int pInteger, int pNumerator, int pDenominator)
@@ -115,14 +115,16 @@ namespace ArithmeticOperationTestProject
             int NumeratorArg = pNumerator;
             int DenominatorArg = pDenominator;
 
-            decimal ResultExpected = Convert.ToDecimal(pInteger) + (Convert.ToDecimal(pNumerator) / Convert.ToDecimal(pDenominator));
-            System.Console.WriteLine(ResultExpected);
-            //Action
-            
+            Fraction fraction = new(IntegerArg, NumeratorArg, pDenominator);
+            decimal ResultExpected = (decimal)fraction;
+            //decimal ResultExpected = ((Convert.ToDecimal(pInteger) * Convert.ToDecimal(pDenominator)) + Convert.ToDecimal(pNumerator)) / Convert.ToDecimal(pDenominator);
+            //System.Console.WriteLine(ResultExpected);
+            string s = Convert.ToString(ResultExpected);
+            Console.WriteLine(s);
+            //Action            
             Fraction FractionArg = new(ResultExpected);
             Console.WriteLine($"{FractionArg.Integer}:{FractionArg.Numerator}/{FractionArg.Denominator}");
-            decimal Result = (decimal)FractionArg;
-
+            //decimal Result = (decimal)FractionArg;
             //Assert
             Assert.AreEqual(FractionArg.Integer, IntegerArg);
             Assert.AreEqual(FractionArg.Numerator, NumeratorArg);
