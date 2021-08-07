@@ -281,7 +281,7 @@ namespace ArithmeticOperatorWinForm
             0,
             0,
             0});
-            this.Denominator2.ValueChanged += new System.EventHandler(this.Denominator2_ValueChanged);
+            this.Denominator2.ValueChanged += new System.EventHandler(this.Fraction2Operator_ValueChanged);
             // 
             // Numerator2
             // 
@@ -301,7 +301,7 @@ namespace ArithmeticOperatorWinForm
             this.Numerator2.TabIndex = 10;
             this.Numerator2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Numerator2.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.Numerator2.ValueChanged += new System.EventHandler(this.Numerator2_ValueChanged);
+            this.Numerator2.ValueChanged += new System.EventHandler(this.Fraction2Operator_ValueChanged);
             // 
             // textBox1
             // 
@@ -331,6 +331,7 @@ namespace ArithmeticOperatorWinForm
             this.Integer2.TabIndex = 8;
             this.Integer2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Integer2.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.Integer2.ValueChanged += new System.EventHandler(this.Fraction2Operator_ValueChanged);
             // 
             // CbOperator
             // 
@@ -363,6 +364,7 @@ namespace ArithmeticOperatorWinForm
             this.Integer1.TabIndex = 6;
             this.Integer1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Integer1.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.Integer1.ValueChanged += new System.EventHandler(this.Fraction1Operator_ValueChanged);
             // 
             // Denominator1
             // 
@@ -386,7 +388,7 @@ namespace ArithmeticOperatorWinForm
             0,
             0,
             0});
-            this.Denominator1.ValueChanged += new System.EventHandler(this.Denominator1_ValueChanged);
+            this.Denominator1.ValueChanged += new System.EventHandler(this.Fraction1Operator_ValueChanged);
             // 
             // Numerator1
             // 
@@ -406,7 +408,7 @@ namespace ArithmeticOperatorWinForm
             this.Numerator1.Size = new System.Drawing.Size(125, 23);
             this.Numerator1.TabIndex = 4;
             this.Numerator1.UseWaitCursor = true;
-            this.Numerator1.ValueChanged += new System.EventHandler(this.Numerator1_ValueChanged);
+            this.Numerator1.ValueChanged += new System.EventHandler(this.Fraction1Operator_ValueChanged);
             // 
             // textBox3
             // 
@@ -572,6 +574,7 @@ namespace ArithmeticOperatorWinForm
             this.IntCompare2.TabIndex = 5;
             this.IntCompare2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.IntCompare2.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.IntCompare2.ValueChanged += new System.EventHandler(this.Fraction2Compare_ValueChanged);
             // 
             // DenomCompare2
             // 
@@ -596,7 +599,7 @@ namespace ArithmeticOperatorWinForm
             0,
             0,
             0});
-            this.DenomCompare2.ValueChanged += new System.EventHandler(this.DenomCompare2_ValueChanged);
+            this.DenomCompare2.ValueChanged += new System.EventHandler(this.Fraction2Compare_ValueChanged);
             // 
             // NumCompare2
             // 
@@ -621,7 +624,7 @@ namespace ArithmeticOperatorWinForm
             0,
             0,
             0});
-            this.NumCompare2.ValueChanged += new System.EventHandler(this.NumCompare2_ValueChanged);
+            this.NumCompare2.ValueChanged += new System.EventHandler(this.Fraction2Compare_ValueChanged);
             // 
             // DenomCompare1
             // 
@@ -646,7 +649,7 @@ namespace ArithmeticOperatorWinForm
             0,
             0,
             0});
-            this.DenomCompare1.ValueChanged += new System.EventHandler(this.DenomCompare1_ValueChanged);
+            this.DenomCompare1.ValueChanged += new System.EventHandler(this.Fraction1Compare_ValueChanged);
             // 
             // NumCompare1
             // 
@@ -671,7 +674,7 @@ namespace ArithmeticOperatorWinForm
             0,
             0,
             0});
-            this.NumCompare1.ValueChanged += new System.EventHandler(this.NumCompare1_ValueChanged);
+            this.NumCompare1.ValueChanged += new System.EventHandler(this.Fraction1Compare_ValueChanged);
             // 
             // IntCompare1
             // 
@@ -691,6 +694,7 @@ namespace ArithmeticOperatorWinForm
             this.IntCompare1.TabIndex = 0;
             this.IntCompare1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.IntCompare1.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.IntCompare1.ValueChanged += new System.EventHandler(this.Fraction1Compare_ValueChanged);
             // 
             // menuStrip1
             // 

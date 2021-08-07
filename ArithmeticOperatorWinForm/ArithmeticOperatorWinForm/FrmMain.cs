@@ -156,68 +156,102 @@ namespace ArithmeticOperatorWinForm
         #endregion
 
 
-        #region gère les avertissement pour les données à 0
-        private void Numerator1_ValueChanged(object sender, EventArgs e)
+        #region Abonnements qui gère les règles pour les NumericUpDown
+        private void Fraction1Operator_ValueChanged(object sender, EventArgs e)
         {
+            if (Integer1.Value != 0)
+            {
+                if (Numerator1.Value < 0)
+                {
+                    Numerator1.Value = -Numerator1.Value;
+                    MessageBox.Show("Le numérateur ne peut pas être négatif si l'entier est différent de 0");
+                }
+                if (Denominator1.Value < 0)
+                {
+                    Denominator1.Value = -Denominator1.Value;
+                    MessageBox.Show("Le dénominateur ne peut pas être négatif si l'entier est différent de 0");
+                }
+            }
+
             if (Numerator1.Value == 0 && Convert.ToChar(CbOperator.SelectedItem) == '/')
             {
                 MessageBox.Show("Le numerateur ne peu pas être à 0 pour une division");
             }
-        }
 
-        private void Denominator1_ValueChanged(object sender, EventArgs e)
-        {
             if (Denominator1.Value == 0)
             {
                 MessageBox.Show("Le dénominateur ne peu pas être à 0");
             }
         }
 
-        private void Numerator2_ValueChanged(object sender, EventArgs e)
+        private void Fraction2Operator_ValueChanged(object sender, EventArgs e)
         {
+            if (Integer2.Value != 0)
+            {
+                if (Numerator2.Value < 0)
+                {
+                    Numerator2.Value = -Numerator2.Value;
+                    MessageBox.Show("Le numérateur ne peut pas être négatif si l'entier est différent de 0");
+                }
+                if (Denominator2.Value < 0)
+                {
+                    Denominator2.Value = -Numerator2.Value;
+                    MessageBox.Show("Le dénominateur ne peut pas être négatif si l'entier est différent de 0");
+                }
+            }
+
             if (Numerator2.Value == 0 && Convert.ToChar(CbOperator.SelectedItem) == '/')
             {
-                MessageBox.Show("Le numerateur ne peu pas être à 0  pour une division");
+                MessageBox.Show("Le numerateur ne peu pas être à 0 pour une division");
             }
-        }
 
-        private void Denominator2_ValueChanged(object sender, EventArgs e)
-        {
             if (Denominator2.Value == 0)
             {
                 MessageBox.Show("Le dénominateur ne peu pas être à 0");
             }
         }
 
-        private void NumCompare1_ValueChanged(object sender, EventArgs e)
+        private void Fraction1Compare_ValueChanged(object sender, EventArgs e)
         {
-            if (NumCompare1.Value == 0)
+            if (IntCompare1.Value != 0)
             {
-                MessageBox.Show("Le numerateur ne peu pas être à 0");
+                if (NumCompare1.Value < 0)
+                {
+                    NumCompare1.Value = -NumCompare1.Value;
+                    MessageBox.Show("Le numérateur ne peut pas être négatif si l'entier est différent de 0");
+                }
+                if (DenomCompare1.Value < 0)
+                {
+                    DenomCompare1.Value = -DenomCompare1.Value;
+                    MessageBox.Show("Le dénominateur ne peut pas être négatif si l'entier est différent de 0");
+                }
             }
-        }
 
-        private void DenomCompare1_ValueChanged(object sender, EventArgs e)
-        {
             if (DenomCompare1.Value == 0)
             {
-                MessageBox.Show("Le numerateur ne peu pas être à 0");
+                MessageBox.Show("Le dénominateur ne peu pas être à 0");
             }
         }
 
-        private void NumCompare2_ValueChanged(object sender, EventArgs e)
+        private void Fraction2Compare_ValueChanged(object sender, EventArgs e)
         {
-            if (NumCompare2.Value == 0)
+            if (IntCompare2.Value < 0)
             {
-                MessageBox.Show("Le numerateur ne peu pas être à 0");
+                if (NumCompare2.Value < 0)
+                {
+                    NumCompare2.Value = -NumCompare2.Value;
+                    MessageBox.Show("Le numérateur ne peut pas être négatif si l'entier est différent de 0");
+                }
+                if (DenomCompare2.Value < 0)
+                {
+                    DenomCompare2.Value = -DenomCompare2.Value;
+                    MessageBox.Show("Le dénominateur ne peut pas être négatif si l'entier est différent de 0");
+                }
             }
-        }
 
-        private void DenomCompare2_ValueChanged(object sender, EventArgs e)
-        {
             if (DenomCompare2.Value == 0)
             {
-                MessageBox.Show("Le numerateur ne peu pas être à 0");
+                MessageBox.Show("Le dénominateur ne peu pas être à 0");
             }
         }
         #endregion
@@ -334,7 +368,9 @@ namespace ArithmeticOperatorWinForm
         private void IntegerResult_TextChanged(object sender, EventArgs e)
         {
             if (IntegerResult.Text != string.Empty || DenominatorResult.Text != string.Empty) BtDecimalConvert.Enabled = true;
-        } 
+        }
         #endregion
+
+        
     }
 }
