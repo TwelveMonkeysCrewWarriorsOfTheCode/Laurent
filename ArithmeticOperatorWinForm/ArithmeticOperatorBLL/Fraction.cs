@@ -110,19 +110,18 @@ namespace ArithmeticOperatorBLL
         /// <param name="pFractionLeft"></param>
         /// <param name="pFractionRight"></param>
         /// <returns>Object Fraction</returns>
-        public static (Fraction, Fraction) CommonDenominator(Fraction pFractionLeft, Fraction pFractionRight)
+        public static (Fraction, Fraction) CommonDenominator(Fraction pFraction1, Fraction pFraction2)
         {
-            Fraction FractionCommunDenominator1 = new()
-            {
-                Numerator = ((pFractionLeft.Numerator + (pFractionLeft.Integer * pFractionLeft.Denominator)) * pFractionRight.Denominator),
-                Denominator = (pFractionLeft.Denominator * pFractionRight.Denominator)                                            
-            };
+            Fraction FractionCommunDenominator1 = new();
+            if (pFraction1.Integer < 0) FractionCommunDenominator1.Numerator = ((pFraction1.Numerator + (-pFraction1.Integer * pFraction1.Denominator)) * pFraction2.Denominator);
+            else FractionCommunDenominator1.Numerator = ((pFraction1.Numerator + (pFraction1.Integer * pFraction1.Denominator)) * pFraction2.Denominator);
+            FractionCommunDenominator1.Denominator = (pFraction1.Denominator * pFraction2.Denominator);
 
-            Fraction FractionCommunDenominator2 = new()
-            {
-                Numerator = ((pFractionRight.Numerator + (pFractionRight.Integer * pFractionRight.Denominator)) * pFractionLeft.Denominator),
-                Denominator = (pFractionRight.Denominator * pFractionLeft.Denominator)
-            };
+            Fraction FractionCommunDenominator2 = new();
+            if (pFraction2.Integer < 0) FractionCommunDenominator2.Numerator = ((pFraction2.Numerator + (-pFraction2.Integer * pFraction2.Denominator)) * pFraction1.Denominator);            
+            else FractionCommunDenominator2.Numerator = ((pFraction2.Numerator + (pFraction2.Integer * pFraction2.Denominator)) * pFraction1.Denominator);           
+            FractionCommunDenominator2.Denominator = (pFraction2.Denominator * pFraction1.Denominator);
+
             (Fraction, Fraction) fractions = (FractionCommunDenominator1, FractionCommunDenominator2);
             return fractions;
         }
@@ -177,17 +176,9 @@ namespace ArithmeticOperatorBLL
         private void NegativeVerification(int pInteger, int pNumerator, int pDenominator)
         {            
             if(pInteger != 0)
-            {                
-                if(pInteger < 0)
-                {
-                    if (pNumerator < 0) Numerator = pNumerator;
-                    else Numerator = -pNumerator;                   
-                }
-                else
-                {
-                    if (pNumerator > 0) Numerator = pNumerator;
-                    else Numerator = -pNumerator;                    
-                }
+            {
+                if (pNumerator < 0) Numerator = -pNumerator;
+                else Numerator = pNumerator;
                 if (pDenominator < 0) Denominator = -pDenominator;
                 else Denominator = pDenominator;
             }
