@@ -113,12 +113,12 @@ namespace ArithmeticOperatorBLL
         public static (Fraction, Fraction) CommonDenominator(Fraction pFraction1, Fraction pFraction2)
         {
             Fraction FractionCommunDenominator1 = new();
-            if (pFraction1.Integer < 0) FractionCommunDenominator1.Numerator = ((pFraction1.Numerator + (-pFraction1.Integer * pFraction1.Denominator)) * pFraction2.Denominator);
+            if (pFraction1.Integer < 0) FractionCommunDenominator1.Numerator = ((-pFraction1.Numerator + (pFraction1.Integer * pFraction1.Denominator)) * pFraction2.Denominator);
             else FractionCommunDenominator1.Numerator = ((pFraction1.Numerator + (pFraction1.Integer * pFraction1.Denominator)) * pFraction2.Denominator);
             FractionCommunDenominator1.Denominator = (pFraction1.Denominator * pFraction2.Denominator);
 
             Fraction FractionCommunDenominator2 = new();
-            if (pFraction2.Integer < 0) FractionCommunDenominator2.Numerator = ((pFraction2.Numerator + (-pFraction2.Integer * pFraction2.Denominator)) * pFraction1.Denominator);            
+            if (pFraction2.Integer < 0) FractionCommunDenominator2.Numerator = ((-pFraction2.Numerator + (pFraction2.Integer * pFraction2.Denominator)) * pFraction1.Denominator);            
             else FractionCommunDenominator2.Numerator = ((pFraction2.Numerator + (pFraction2.Integer * pFraction2.Denominator)) * pFraction1.Denominator);           
             FractionCommunDenominator2.Denominator = (pFraction2.Denominator * pFraction1.Denominator);
 
