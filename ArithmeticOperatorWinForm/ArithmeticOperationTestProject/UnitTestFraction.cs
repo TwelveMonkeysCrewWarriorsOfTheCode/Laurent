@@ -57,7 +57,7 @@ namespace ArithmeticOperationTestProject
         ///Testes constructeur 3 argument
         [DataRow(1, 6, 3, 1, 6, 3)]
         [DataRow(2, 1, 3, 2, 1, 3)]
-        [DataRow(0, -2, -5, 0, 2, 5)]
+        [DataRow(0, -2, -5, 0, -2, -5)]
 
         [TestMethod]
         public void Constructor3arg(int pInteger, int pNumerator, int pDenominator, int pIntegerExpected, int pNumetorExpected, int pDenominatorExpected)
@@ -254,20 +254,20 @@ namespace ArithmeticOperationTestProject
             Assert.AreEqual(ExpectedValue, Result);
         }
 
-        [DataRow(false, 61, 4, 12, 8)]
-        [DataRow(true, 10, 5, 2, 1)]
+        [DataRow(false,0, 61, 4, 0, 12, 8)]
+        [DataRow(false, -2, 10, 5, 2, 2, 1)]
 
         [TestMethod]
-        public void FractionTestMethodEqual(bool Result, int FracNumerator1, int FracDenominator1, int FracNumerator2, int FracDenominator2)
+        public void FractionTestMethodEqual(bool Result, int FracInt1, int FracNumerator1, int FracDenominator1, int FracInt2, int FracNumerator2, int FracDenominator2)
         {
             //Arregement
-            Fraction Fraction1 = new() { Numerator = FracNumerator1, Denominator = FracDenominator1 };
-            Fraction Fraction2 = new() { Numerator = FracNumerator2, Denominator = FracDenominator2 };
+            Fraction Fraction1 = new(FracInt1, FracNumerator1, FracDenominator1);
+            Fraction Fraction2 = new(FracInt2, FracNumerator2, FracDenominator2);
             bool ExpectedValue = Result;
 
             //Action
             Result = Fraction1 == Fraction2;
-            System.Console.WriteLine($"{Fraction1.Numerator}/{Fraction1.Denominator} = {Fraction2.Numerator}/{Fraction2.Denominator} = {Result}");
+            System.Console.WriteLine($"{Fraction1.Integer}:{Fraction1.Numerator}/{Fraction1.Denominator} = {Fraction2.Integer}:{Fraction2.Numerator}/{Fraction2.Denominator} = {Result}");
 
             //Assert
             Assert.AreEqual(ExpectedValue, Result);

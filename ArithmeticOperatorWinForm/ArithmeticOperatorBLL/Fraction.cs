@@ -60,8 +60,10 @@ namespace ArithmeticOperatorBLL
         public Fraction(int pIntNum, int pNumerator, int pDenominator)
         {
             if (pDenominator == 0) throw new ArgumentException("Denominator == 0");
-            this.NegativeVerification(pIntNum, pNumerator, pDenominator);
+            //this.NegativeVerification(pIntNum, pNumerator, pDenominator);
             Integer = pIntNum;
+            Numerator = pNumerator;
+            Denominator = pDenominator;            
         }
 
         /// <summary>
@@ -185,37 +187,7 @@ namespace ArithmeticOperatorBLL
                 Numerator = -pNumerator;
                 Denominator = -pDenominator;
             }
-        }
-
-        /// <summary>
-        /// Gère les signes négatif de la fraction à 3 arguments
-        /// </summary>
-        /// <param name="pInteger">int</param>
-        /// <param name="pNumerator">int</param>
-        /// <param name="pDenominator">int</param>
-        private void NegativeVerification(int pInteger, int pNumerator, int pDenominator)
-        {            
-            if(pInteger != 0)
-            {
-                if (pNumerator < 0) Numerator = -pNumerator;
-                else Numerator = pNumerator;
-                if (pDenominator < 0) Denominator = -pDenominator;
-                else Denominator = pDenominator;
-            }
-            else
-            {
-                if (pDenominator > 0)
-                {
-                    Numerator = pNumerator;
-                    Denominator = pDenominator;
-                }
-                else
-                {
-                    Numerator = -pNumerator;
-                    Denominator = -pDenominator;
-                }
-            }          
-        }
+        }        
         
         /// <summary>
         /// Soustrait le 1er numérateur au 2ème après avoir trouver le denomonateur commun
@@ -228,7 +200,8 @@ namespace ArithmeticOperatorBLL
             if (other == null) return 1;
             else
             {
-                (Fraction, Fraction) fractions = CommonDenominator(this, other);
+                (Fraction, Fraction) fractions = MinimunDenominator(this, other);
+                fractions = CommonDenominator(fractions.Item1, fractions.Item2);
                 return fractions.Item1.Numerator - fractions.Item2.Numerator;
             }
         }
@@ -238,7 +211,8 @@ namespace ArithmeticOperatorBLL
 
         public bool Equals(Fraction other)
         {
-            (Fraction, Fraction) fractions = CommonDenominator(this, other);
+            (Fraction, Fraction) fractions = MinimunDenominator(this, other);
+            fractions = CommonDenominator(fractions.Item1, fractions.Item2);
             return (other != null && fractions.Item1.Numerator == fractions.Item2.Numerator);
         }
 
