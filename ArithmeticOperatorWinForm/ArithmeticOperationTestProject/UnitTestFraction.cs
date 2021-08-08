@@ -174,7 +174,7 @@ namespace ArithmeticOperationTestProject
 
         [DataRow(0, 6, 4, 0, 10, 11, 1, 4, 11)]
         [DataRow(0, 6, 5, 0, 10, 11, 1, 1, 11)]
-        [DataRow(0, 8, 4, 0, 15, 24, 1, 1, 4)]
+        [DataRow(1, 2, 4, 0, 5, 7, 1, 1, 14)]
 
         [TestMethod]
         public void FractionTestMethodMultiplication(int Integer1, int Numerator1, int Denominator1, int Integer2, int Numerator2, int Denominator2, int IntegerResult, int NumeratorResult, int DenominatorResult)

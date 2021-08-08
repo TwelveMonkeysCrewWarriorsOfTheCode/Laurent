@@ -369,8 +369,6 @@ namespace ArithmeticOperatorWinForm
         {
             if (IntegerResult.Text != string.Empty || DenominatorResult.Text != string.Empty) BtDecimalConvert.Enabled = true;
         }
-        #endregion
-
-        
+        #endregion        
     }
 }

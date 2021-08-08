@@ -44,11 +44,11 @@ namespace ArithmeticOperatorBLL
         /// <param name="pDenominator">int</param>
         public Fraction(int pNumerator, int pDenominator)
         {
-            if(pDenominator == 0) throw new ArgumentException("Denominator == 0");            
+            if(pDenominator == 0) throw new ArgumentException("Denominator == 0");
             this.NegativeVerification(pNumerator, pDenominator);
             Integer = Numerator / Denominator;
             Numerator %= Denominator;
-            
+
         }
 
         /// <summary>
@@ -110,18 +110,16 @@ namespace ArithmeticOperatorBLL
         /// <param name="pFractionLeft"></param>
         /// <param name="pFractionRight"></param>
         /// <returns>Object Fraction</returns>
-        public static (Fraction, Fraction) CommonDenominator(Fraction pFraction1, Fraction pFraction2)
+        private static (Fraction, Fraction) CommonDenominator(Fraction pFraction1, Fraction pFraction2)
         {
             Fraction FractionCommunDenominator1 = new();
-            if (pFraction1.Integer < 0) FractionCommunDenominator1.Numerator = ((-pFraction1.Numerator + (pFraction1.Integer * pFraction1.Denominator)) * pFraction2.Denominator);
-            else FractionCommunDenominator1.Numerator = ((pFraction1.Numerator + (pFraction1.Integer * pFraction1.Denominator)) * pFraction2.Denominator);
-            FractionCommunDenominator1.Denominator = (pFraction1.Denominator * pFraction2.Denominator);
-
+            FractionCommunDenominator1.Numerator = pFraction1.Numerator * pFraction2.Denominator;
+            FractionCommunDenominator1.Denominator = pFraction1.Denominator * pFraction2.Denominator;
+            
             Fraction FractionCommunDenominator2 = new();
-            if (pFraction2.Integer < 0) FractionCommunDenominator2.Numerator = ((-pFraction2.Numerator + (pFraction2.Integer * pFraction2.Denominator)) * pFraction1.Denominator);            
-            else FractionCommunDenominator2.Numerator = ((pFraction2.Numerator + (pFraction2.Integer * pFraction2.Denominator)) * pFraction1.Denominator);           
-            FractionCommunDenominator2.Denominator = (pFraction2.Denominator * pFraction1.Denominator);
-
+            FractionCommunDenominator2.Numerator = pFraction2.Numerator * pFraction1.Denominator;
+            FractionCommunDenominator2.Denominator = pFraction2.Denominator * pFraction1.Denominator;
+            
             (Fraction, Fraction) fractions = (FractionCommunDenominator1, FractionCommunDenominator2);
             return fractions;
         }
@@ -144,8 +142,30 @@ namespace ArithmeticOperatorBLL
                 }
                 Numerator /= maxDivider;
                 Denominator /= maxDivider;
-            }
+            }            
+        }
+
+        private static (Fraction, Fraction) MinimunDenominator(Fraction pFraction1, Fraction pFraction2)
+        {
+            Fraction FractionSimplified1 = new();            
+            if (pFraction1.Integer < 0) FractionSimplified1.Numerator = -pFraction1.Numerator + (pFraction1.Integer * pFraction1.Denominator);
+            else FractionSimplified1.Numerator = pFraction1.Numerator + (pFraction1.Integer * pFraction1.Denominator);
+            FractionSimplified1.Denominator = pFraction1.Denominator;
+            FractionSimplified1.MinimunDenominator();
+
+            Fraction FractionSimplified2 = new();
+            if(pFraction2.Integer < 0) FractionSimplified2.Numerator = -pFraction2.Numerator + (pFraction2.Integer * pFraction2.Denominator);
+            else FractionSimplified2.Numerator = pFraction2.Numerator + (pFraction2.Integer * pFraction2.Denominator);
+            FractionSimplified2.Denominator = pFraction2.Denominator;
+            FractionSimplified2.MinimunDenominator();
             
+            (Fraction, Fraction) fractions = (FractionSimplified1, FractionSimplified2);
+            return fractions;
+        }
+
+        private void NegativeVerification()
+        {
+            if(Integer < 0 && Numerator < 0) Numerator = -Numerator;
         }
 
         /// <summary>
@@ -196,7 +216,7 @@ namespace ArithmeticOperatorBLL
                 }
             }          
         }
-
+        
         /// <summary>
         /// Soustrait le 1er numérateur au 2ème après avoir trouver le denomonateur commun
         /// Si revoi 0 les 2 fraction sont égales
@@ -253,44 +273,56 @@ namespace ArithmeticOperatorBLL
         /// <returns>Fraction<returns>
         public static Fraction operator +(Fraction pFraction1, Fraction pFraction2)
         {
-            (Fraction, Fraction) fractions = CommonDenominator(pFraction1, pFraction2);
+            (Fraction, Fraction) fractions = MinimunDenominator(pFraction1, pFraction2);
+            fractions = CommonDenominator(fractions.Item1, fractions.Item2);
             Fraction FractionResult = new(fractions.Item1.Numerator + fractions.Item2.Numerator, fractions.Item1.Denominator);
             FractionResult.MinimunDenominator();
+            FractionResult.NegativeVerification();
             return FractionResult;
         }
 
         public static Fraction operator -(Fraction pFraction1, Fraction pFraction2)
         {
-            (Fraction, Fraction) fractions = CommonDenominator(pFraction1, pFraction2);
+            (Fraction, Fraction) fractions = MinimunDenominator(pFraction1, pFraction2);
+            fractions = CommonDenominator(fractions.Item1, fractions.Item2);
             Fraction FractionResult = new(fractions.Item1.Numerator - fractions.Item2.Numerator, fractions.Item1.Denominator);
             FractionResult.MinimunDenominator();
+            FractionResult.NegativeVerification();
             return FractionResult;
         }
 
         public static Fraction operator *(Fraction pFraction1, Fraction pFraction2)
         {
-            Fraction FractionResult = new(pFraction1.Numerator * pFraction2.Numerator, pFraction1.Denominator * pFraction2.Denominator);
+            (Fraction, Fraction) fractions = MinimunDenominator(pFraction1, pFraction2);
+            fractions = CommonDenominator(fractions.Item1, fractions.Item2);
+            Fraction FractionResult = new(fractions.Item1.Numerator * fractions.Item2.Numerator, fractions.Item1.Denominator * fractions.Item2.Denominator);            
             FractionResult.MinimunDenominator();
+            FractionResult.NegativeVerification();
+            
             return FractionResult;
         }
 
         public static Fraction operator /(Fraction pFraction1, Fraction pFraction2)
         {
             if(pFraction1.Numerator == 0 || pFraction2.Numerator == 0) throw new ArgumentException("Numerator == 0 for a division");
-            Fraction FractionResult = new(pFraction1.Numerator * pFraction2.Denominator, pFraction1.Denominator * pFraction2.Numerator);
+            (Fraction, Fraction) fractions = MinimunDenominator(pFraction1, pFraction2);
+            Fraction FractionResult = new(fractions.Item1.Numerator * fractions.Item2.Denominator, fractions.Item1.Denominator * fractions.Item2.Numerator);
             FractionResult.MinimunDenominator();
+            FractionResult.NegativeVerification();
             return FractionResult;
         }
 
         public static bool operator <(Fraction pFraction1, Fraction pFraction2)
         {
-            (Fraction, Fraction) fractions = CommonDenominator(pFraction1, pFraction2);
+            (Fraction, Fraction) fractions = MinimunDenominator(pFraction1, pFraction2);
+            fractions = CommonDenominator(pFraction1, pFraction2);
             return (fractions.Item1.Numerator < fractions.Item2.Numerator);
         }
 
         public static bool operator >(Fraction pFraction1, Fraction pFraction2)
         {
-            (Fraction, Fraction) fractions = CommonDenominator(pFraction1, pFraction2);
+            (Fraction, Fraction) fractions = MinimunDenominator(pFraction1, pFraction2);
+            fractions = CommonDenominator(pFraction1, pFraction2);
             return (fractions.Item1.Numerator > fractions.Item2.Numerator);
         }
 
