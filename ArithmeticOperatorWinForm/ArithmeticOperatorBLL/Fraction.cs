@@ -45,7 +45,7 @@ namespace ArithmeticOperatorBLL
         public Fraction(int pNumerator, int pDenominator)
         {
             if(pDenominator == 0) throw new ArgumentException("Denominator == 0");
-            this.NegativeVerification(pNumerator, pDenominator);
+            NegativeVerification(pNumerator, pDenominator);
             Integer = Numerator / Denominator;
             Numerator %= Denominator;
 
@@ -57,17 +57,17 @@ namespace ArithmeticOperatorBLL
         /// <param name="pIntNum">int</param>
         /// <param name="pNumerator">int</param>
         /// <param name="pDenominator">int</param>
-        public Fraction(int pIntNum, int pNumerator, int pDenominator)
+        public Fraction(int pInteger, int pNumerator, int pDenominator)
         {
             if (pDenominator == 0) throw new ArgumentException("Denominator == 0");
-            //this.NegativeVerification(pIntNum, pNumerator, pDenominator);
-            Integer = pIntNum;
+            NegativeVerification(pInteger, pNumerator, pDenominator);
+            Integer = pInteger;
             Numerator = pNumerator;
             Denominator = pDenominator;            
         }
 
         /// <summary>
-        /// Transforme une décimal en fraction et le signe négatif
+        /// Transforme une décimal en fraction et gère le signe négatif
         /// </summary>
         /// <param name="pFractionFloat">decimal</param>
         public Fraction(decimal pFractionFloat)
@@ -147,6 +147,13 @@ namespace ArithmeticOperatorBLL
             }            
         }
 
+        /// <summary>
+        /// Gère les signes négatifs et appelle le méthode MinimunDenominator pour chaque Fraction
+        /// pour simplifier la fraction 
+        /// </summary>
+        /// <param name="pFraction1">Fraction</param>
+        /// <param name="pFraction2">Fraction</param>
+        /// <returns>Tuple (Fraction, Fraction)(</returns>
         private static (Fraction, Fraction) MinimunDenominator(Fraction pFraction1, Fraction pFraction2)
         {
             Fraction FractionSimplified1 = new();            
@@ -165,6 +172,9 @@ namespace ArithmeticOperatorBLL
             return fractions;
         }
 
+        /// <summary>
+        /// Gère les signes négatif pour une Fraction
+        /// </summary>
         private void NegativeVerification()
         {
             if(Integer < 0 && Numerator < 0) Numerator = -Numerator;
@@ -187,8 +197,23 @@ namespace ArithmeticOperatorBLL
                 Numerator = -pNumerator;
                 Denominator = -pDenominator;
             }
-        }        
-        
+        }
+
+        /// <summary>
+        /// Gère les signes négatif de la fraction à 3 arguments
+        /// </summary>
+        /// <param name="pInteger">int</param>
+        /// <param name="pNumerator">int</param>
+        /// <param name="pDenominator">int</param>
+        private void NegativeVerification(int pInteger, int pNumerator, int pDenominator)
+        {
+            if(pInteger != 0)
+            {
+                if(pNumerator < 0) Numerator = -pNumerator;
+                if (pDenominator < 0) Denominator = -pDenominator;
+            }            
+        }
+
         /// <summary>
         /// Soustrait le 1er numérateur au 2ème après avoir trouver le denomonateur commun
         /// Si revoi 0 les 2 fraction sont égales
