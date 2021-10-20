@@ -1,0 +1,72 @@
+﻿@model IEnumerable<AdoptDevMVC.Models.ContractModel>
+
+@{
+    ViewData["Title"] = "ListContract";
+}
+
+<h1>Liste des contrats disponibles</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Rémunération</th>
+            <th>Date de fin</th>
+            <th>Client</th>
+            <th>Skills BDD</th>
+            <th>Skills Backend</th>
+            <th>Skills Frontend</th>
+            <th>Contacter Client</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>@item.DeadLine.ToString("dd MMMM yyyy")</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerName)
+                </td>
+                @if (item.NeededSkillList != null)
+                {
+                    foreach (var categoryList in item.NeededSkillList)
+                    {
+                        if (categoryList.CategoryName == "Base de données")
+                        {
+                            <td>@categoryList.SkillName</td>
+                        }
+                    }
+                    foreach (var categoryList in item.NeededSkillList)
+                    {
+                        if (categoryList.CategoryName == "Backend")
+                        {
+                            <td>@categoryList.SkillName</td>
+                        }
+                    }
+                    foreach (var categoryList in item.NeededSkillList)
+                    {
+                        if (categoryList.CategoryName == "Frontend")
+                        {
+                            <td>@categoryList.SkillName</td>
+                        }
+                    }
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+                <td>
+                    <a href="@string.Format("mailto:{0}", item.OwnerEmail)">@item.OwnerEmail</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

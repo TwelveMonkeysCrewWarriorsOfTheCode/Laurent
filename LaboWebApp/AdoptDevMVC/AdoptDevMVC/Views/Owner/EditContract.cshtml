@@ -1,0 +1,126 @@
+﻿@model AdoptDevMVC.Models.ContractModel
+
+@{
+    ViewData["Title"] = "EditContract";
+}
+
+<h1>Editer un contrat</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditContract" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">Rémunération</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeadLine" class="control-label">Date de fin</label>
+                <input asp-for="DeadLine" type="date" class="form-control" />
+                <span asp-validation-for="DeadLine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OwnerName" class="control-label">Client</label>
+                <input asp-for="OwnerName" disabled="disabled" class="form-control" />
+                <span asp-validation-for="OwnerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SkillDBId" class="control-label">Skills base de données</label>
+                <select asp-for="SkillDBId" class="form-control">
+                    @foreach (var list in Model.SkillList)
+                    {
+                        if (list.CategoryName == "Base de données")
+                        {
+                            if (list.Id == Model.SkillDBId)
+                            {
+                                <option value="@list.Id" selected>@list.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@list.Id">@list.Name</option>
+                            }
+                        }
+                    }
+                </select>
+                <span asp-validation-for="SkillBackId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SkillBackId" class="control-label">Skills backend</label>
+                <select asp-for="SkillBackId" class="form-control">
+                    @foreach (var list in Model.SkillList)
+                    {
+                        if (list.CategoryName == "Backend")
+                        {
+                            if (list.Id == Model.SkillBackId)
+                            {
+                                <option value="@list.Id" selected>@list.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@list.Id">@list.Name</option>
+                            }
+
+                        }
+                    }
+                </select>
+                <span asp-validation-for="SkillFrontId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SkillFrontId" class="control-label">Skills frontend</label>
+                <select asp-for="SkillFrontId" class="form-control">
+                    @foreach (var list in Model.SkillList)
+                    {
+                        if (list.CategoryName == "Frontend")
+                        {
+                            if (list.Id == Model.SkillFrontId)
+                            {
+                                <option value="@list.Id" selected>@list.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@list.Id">@list.Name</option>
+                            }
+                        }
+                    }
+                </select>
+                <span asp-validation-for="SkillFrontId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DevId" class="control-label">Développeur</label>
+                <select asp-for="DevId" class="form-control">
+                    <option value="0">Aucun</option>
+                    @foreach (var list in Model.DevList)
+                    {
+                        if (list.Id == Model.DevId)
+                        {
+                            <option value="@list.Id" selected>@list.Name : @list.Email</option>
+                        }
+                        else
+                        {
+                            <option value="@list.Id">@list.Name : @list.Email</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="DevId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sauvegarder" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ListContract">Retour à la liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

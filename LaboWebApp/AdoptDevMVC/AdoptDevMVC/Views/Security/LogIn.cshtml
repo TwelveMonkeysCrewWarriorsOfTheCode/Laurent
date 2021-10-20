@@ -1,0 +1,39 @@
+﻿@model AdoptDevMVC.Models.Security.LogInModel
+
+@{
+    ViewData["Title"] = "LogIn";
+}
+
+<h3>Connection</h3>
+<hr />
+@if (Model != null)
+{
+    <p class="dataError">Email ou mot de passe non valide !</p>
+}
+<div class="formContainer">
+    <form asp-action="LogIn" class="formContent">
+        <table class="tabForm">
+            <tr>
+                <td class="tabLabel"><label asp-for="Email">Email</label></td>
+                <td class="tabInput">
+                    <input asp-for="Email" type="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="tabLabel"><label asp-for="Password">Mot de passe</label></td>
+                <td class="tabInput">
+                    <input asp-for="Password" type="password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="tabButton">
+                    <div class="buttonFormContainer">
+                        <input type="submit" value="Se connecter" class="btn btn-primary" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

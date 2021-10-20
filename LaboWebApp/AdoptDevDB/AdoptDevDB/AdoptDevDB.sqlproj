@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>AdoptDevDB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{1b9dd0c4-5c46-40ed-8d30-1a16495f07aa}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath />
+    <RootNamespace>AdoptDevDB</RootNamespace>
+    <AssemblyName>AdoptDevDB</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Views" />
+    <Folder Include="Views\Category" />
+    <Folder Include="Views\Contract" />
+    <Folder Include="Views\Skill" />
+    <Folder Include="Views\User" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="PostDeploymentScript" />
+    <Folder Include="StoredProcedures\Category" />
+    <Folder Include="StoredProcedures\Skill" />
+    <Folder Include="StoredProcedures\Contract" />
+    <Folder Include="StoredProcedures\User" />
+    <Folder Include="StoredProcedures\Security" />
+    <Folder Include="Views\NeededSkill" />
+    <Folder Include="StoredProcedures\NeededSkill" />
+    <Folder Include="Views\UserSkill" />
+    <Folder Include="StoredProcedures\UserSkill" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Categories.sql" />
+    <Build Include="Tables\Contracts.sql" />
+    <Build Include="Tables\NeededSkills.sql" />
+    <Build Include="Tables\Skills.sql" />
+    <Build Include="Tables\Users.sql" />
+    <Build Include="Views\Category\V_CategoryGetAll.sql" />
+    <Build Include="Views\Contract\V_ContractGetAll.sql" />
+    <Build Include="Views\Skill\V_SkillGetAll.sql" />
+    <Build Include="Views\User\V_UserGetAll.sql" />
+    <Build Include="Views\User\V_UserGetAllDev.sql" />
+    <Build Include="Views\User\V_UserGetAllOwner.sql" />
+    <Build Include="StoredProcedures\Category\CategoryGetAll.sql" />
+    <Build Include="StoredProcedures\Skill\SkillGetAll.sql" />
+    <Build Include="StoredProcedures\Contract\ContractGetAll.sql" />
+    <Build Include="Views\User\V_UserGetAllSimple.sql" />
+    <Build Include="StoredProcedures\User\UserGetAll.sql" />
+    <Build Include="StoredProcedures\User\UserGetById.sql" />
+    <Build Include="StoredProcedures\User\UserUpdate.sql" />
+    <Build Include="StoredProcedures\User\UserDelete.sql" />
+    <Build Include="StoredProcedures\Security\Register.sql" />
+    <Build Include="StoredProcedures\Security\LogIn.sql" />
+    <Build Include="StoredProcedures\Category\CategoryGetById.sql" />
+    <Build Include="Tables\UserSkills.sql" />
+    <Build Include="StoredProcedures\Contract\ContractGetById.sql" />
+    <Build Include="Views\NeededSkill\V_NeededSkillGetAll.sql" />
+    <Build Include="StoredProcedures\NeededSkill\SkillNameGetByContractId.sql" />
+    <Build Include="StoredProcedures\Contract\ContractUpdate.sql" />
+    <Build Include="StoredProcedures\NeededSkill\NeededSkillUpdate.sql" />
+    <Build Include="StoredProcedures\NeededSkill\NeededSkillGetAll.sql" />
+    <Build Include="StoredProcedures\Contract\ContractCreate.sql" />
+    <Build Include="StoredProcedures\Skill\SkillGetById.sql" />
+    <Build Include="StoredProcedures\NeededSkill\NeededSkillCreate.sql" />
+    <Build Include="StoredProcedures\NeededSkill\NeededSkillDelete.sql" />
+    <Build Include="StoredProcedures\Contract\ContractDelete.sql" />
+    <Build Include="Views\UserSkill\V_UserSkillGetAll.sql" />
+    <Build Include="StoredProcedures\UserSkill\UserSkillGetAll.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeploymentScript\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AdoptDevDB.publish.xml" />
+  </ItemGroup>
+</Project>
