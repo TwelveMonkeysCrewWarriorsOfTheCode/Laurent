@@ -136,7 +136,7 @@ namespace ArithmeticOperatorWinForm
                         if (Result)
                         {
                             TbAnswer.ForeColor = Color.Green;
-                            TbAnswer.Text = $"{Fraction1} est plus petit queest plus grand que {Fraction2}";
+                            TbAnswer.Text = $"{Fraction1} est plus petit que {Fraction2}";
                         }
                         else
                         {
