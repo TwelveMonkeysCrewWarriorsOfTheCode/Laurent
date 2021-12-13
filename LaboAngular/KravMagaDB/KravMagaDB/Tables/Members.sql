@@ -1,0 +1,20 @@
+﻿CREATE TABLE [dbo].[Members]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Email] VARCHAR(50) NOT NULL, 
+    [Password] VARBINARY(64) NOT NULL, 
+    [Salt] VARCHAR(100) NOT NULL, 
+    [LastName] VARCHAR(50) NOT NULL, 
+    [FirstName] VARCHAR(50) NOT NULL, 
+    [BirthDay] DATE NOT NULL, 
+    [Adress] VARCHAR(MAX) NOT NULL, 
+    [Phone] VARCHAR(50) NOT NULL, 
+    [Subscription] BIT NULL DEFAULT 0 , 
+    [LastDateSubscription] DATETIME NULL DEFAULT 01/01/1950, 
+    [AutorisationID] INT NULL DEFAULT 1, 
+    [RoleID] INT NULL DEFAULT 1, 
+    [BeltID] INT NULL DEFAULT 1,
+    CONSTRAINT [FK_AUTORISATION_MEMBER]FOREIGN KEY (AutorisationID) REFERENCES [Autorisations](Id),
+    CONSTRAINT [FK_ROLE_MEMBER] FOREIGN KEY (RoleID) REFERENCES [Roles](Id),
+    CONSTRAINT [FK_BELT_MEMBER] FOREIGN KEY (BeltID) REFERENCES [Belts](Id),
+)

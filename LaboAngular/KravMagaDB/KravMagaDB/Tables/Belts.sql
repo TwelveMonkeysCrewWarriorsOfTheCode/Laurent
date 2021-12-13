@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Belts]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [BeltColor] VARCHAR(50) NOT NULL
+)
