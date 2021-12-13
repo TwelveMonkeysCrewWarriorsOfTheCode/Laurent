@@ -6,7 +6,7 @@
     <Name>KravMagaDB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{64b5ab5a-292a-4e09-b861-e67a426bd795}</ProjectGuid>
+    <ProjectGuid>{ac251a4c-0896-4ef3-8938-497ba2d40abc}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -16,7 +16,7 @@
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetLanguage>CS</TargetLanguage>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SqlServerVerification>False</SqlServerVerification>
@@ -57,39 +57,44 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="PostDeploymentScript" />
     <Folder Include="StoredProcedures" />
     <Folder Include="Views" />
-    <Folder Include="StoredProcedures\Member" />
-    <Folder Include="StoredProcedures\Autorisation" />
+    <Folder Include="StoredProcedures\Authorisation" />
     <Folder Include="StoredProcedures\Belt" />
+    <Folder Include="StoredProcedures\Member" />
     <Folder Include="StoredProcedures\Role" />
     <Folder Include="StoredProcedures\Security" />
-    <Folder Include="PostDeploymentScript" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Autorisations.sql" />
-    <Build Include="Tables\Belts.sql" />
     <Build Include="Tables\Members.sql" />
+    <Build Include="Tables\Authorisations.sql" />
+    <Build Include="Tables\Belts.sql" />
     <Build Include="Tables\Roles.sql" />
+    <Build Include="Views\V_AuthorisationGetAll.sql" />
+    <Build Include="Views\V_BeltGetAll.sql" />
+    <Build Include="Views\V_GetForPasswordVerification.sql" />
     <Build Include="Views\V_MemberGetAll.sql" />
-    <Build Include="StoredProcedures\Member\MemberUpdateAdmin.sql" />
-    <Build Include="StoredProcedures\Member\MemberUpdate.sql" />
-    <Build Include="StoredProcedures\Member\MemberRegister.sql" />
-    <Build Include="StoredProcedures\Member\MemberPasswordUpdate.sql" />
-    <Build Include="StoredProcedures\Member\MemberLogin.sql" />
+    <Build Include="Views\V_RoleGetAll.sql" />
+    <Build Include="StoredProcedures\Authorisation\AutorisationGetAll.sql" />
+    <Build Include="StoredProcedures\Belt\BeltGetAll.sql" />
     <Build Include="StoredProcedures\Member\MemberGetAll.sql" />
     <Build Include="StoredProcedures\Member\MemberGetByIdAdmin.sql" />
-    <Build Include="Views\V_AutorisationGetAll.sql" />
-    <Build Include="StoredProcedures\Autorisation\AutorisationGetAll.sql" />
-    <Build Include="Views\V_BeltGetAll.sql" />
-    <Build Include="Views\V_RoleGetAll.sql" />
-    <Build Include="StoredProcedures\Belt\BeltGetAll.sql" />
-    <Build Include="StoredProcedures\Role\RoleGetAll.sql" />
-    <Build Include="Views\V_GetForPasswordVerification.sql" />
-    <Build Include="StoredProcedures\Security\PasswordVerification.sql" />
     <Build Include="StoredProcedures\Member\MemberGetByIdUser.sql" />
+    <Build Include="StoredProcedures\Member\MemberLogin.sql" />
+    <Build Include="StoredProcedures\Member\MemberPasswordUpdate.sql" />
+    <Build Include="StoredProcedures\Member\MemberRegister.sql" />
+    <Build Include="StoredProcedures\Member\MemberUpdate.sql" />
+    <Build Include="StoredProcedures\Member\MemberUpdateAdmin.sql" />
+    <Build Include="StoredProcedures\Security\PasswordVerification.sql" />
+    <Build Include="StoredProcedures\Role\RoleGetAll.sql" />
+    <Build Include="StoredProcedures\Member\MemberDelete.sql" />
+    <Build Include="StoredProcedures\Belt\BeltUpdate.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="PostDeploymentScript\Script.PostDeployment1.sql" />
+    <PostDeploy Include="PostDeploymentScript\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="KravMagaDB.publish.xml" />
   </ItemGroup>
 </Project>

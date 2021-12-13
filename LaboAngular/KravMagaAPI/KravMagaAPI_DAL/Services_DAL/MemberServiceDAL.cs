@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace KravMagaAPI_DAL.Services_DAL
 {
-    internal class MemberServiceDAL : ICRUDServiceDAL<MemberModelDAL>
+    public class MemberServiceDAL : ICRUDServiceDAL<MemberModelDAL>
     {
         private readonly string _connectionString;
 
@@ -100,8 +100,7 @@ namespace KravMagaAPI_DAL.Services_DAL
 
         public void Delete(int id)
         {
-            string query = "DELETE FROM Member WHERE Id = @Id";
-            Command cmd = new(query);
+            Command cmd = new("MemberDelete", true);
             cmd.AddParameter("Id", id);
 
             try

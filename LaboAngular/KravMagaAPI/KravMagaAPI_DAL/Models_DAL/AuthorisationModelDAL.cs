@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace KravMagaAPI_DAL.Models_DAL
 {
-    public class LogInModelDAL
+    public class AuthorisationModelDAL
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public int Id { get; set; }
+        public string AuthorisationType { get; set; }
     }
 }
+

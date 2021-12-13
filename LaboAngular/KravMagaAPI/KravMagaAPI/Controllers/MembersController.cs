@@ -12,10 +12,7 @@ namespace KravMagaAPI.Controllers
     public class MembersController : ControllerBase
     {
         private readonly ICRUDServiceDAL<MemberModelDAL> _memberService;
-        public MembersController(ICRUDServiceDAL<MemberModelDAL> memberService)
-        {
-            _memberService = memberService;                 
-        }
+        public MembersController(ICRUDServiceDAL<MemberModelDAL> memberService) =>_memberService = memberService; 
 
         [HttpPut]
         public IActionResult InsertMember(MemberInsertModel member)

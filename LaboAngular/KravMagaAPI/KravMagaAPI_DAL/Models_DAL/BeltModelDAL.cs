@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace KravMagaAPI_DAL.Models_DAL
 {
-    internal class BeltModelDAL
+    public class BeltModelDAL
     {
-        internal int Id { get; set; }
-        internal string BeltColor { get; set; }
+        public int Id { get; set; }
+        public string BeltColor { get; set; }
     }
 }

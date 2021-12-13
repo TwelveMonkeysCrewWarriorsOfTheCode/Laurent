@@ -1,4 +1,5 @@
 ﻿using KravMagaAPI.Models;
+using KravMagaAPI.Models.LogIn;
 using KravMagaAPI_DAL.Models_DAL;
 
 namespace KravMagaAPI.Tools
@@ -30,6 +31,27 @@ namespace KravMagaAPI.Tools
                 BirthDay = member.BirthDay,
                 Adress = member.Adress,
                 Phone = member.Phone
+            };
+        }
+
+        public static LogInModelDAL LogInModelToLogInModelDAL(this LogInModel logIn)
+        {
+            return new LogInModelDAL
+            {
+                Email = logIn.Email,
+                Password = logIn.Password
+            };
+        }
+
+        public static BeLoggedModel BeLoggedModelDALToBeLoggedModel(this BeLoggedModelDAL blm)
+        {
+            return new BeLoggedModel
+            {
+                Id = blm.Id,
+                Email = blm.Email,
+                FirstName = blm.FirstName,
+                LastName = blm.LastName,
+                AutorisationID = blm.AutorisationID,    
             };
         }
     }

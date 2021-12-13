@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace KravMagaAPI_DAL.Models_DAL
 {
-    internal class RoleModelDAL
+    public class RoleModelDAL
     {
-        internal int Id { get; set; }
-        internal string RoleName { get; set; }
+        public int Id { get; set; }
+        public string RoleName { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KravMagaDB", "KravMagaDB\KravMagaDB.sqlproj", "{64B5AB5A-292A-4E09-B861-E67A426BD795}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KravMagaDB", "KravMagaDB\KravMagaDB.sqlproj", "{AC251A4C-0896-4EF3-8938-497BA2D40ABC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,17 +11,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{64B5AB5A-292A-4E09-B861-E67A426BD795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64B5AB5A-292A-4E09-B861-E67A426BD795}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64B5AB5A-292A-4E09-B861-E67A426BD795}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{64B5AB5A-292A-4E09-B861-E67A426BD795}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64B5AB5A-292A-4E09-B861-E67A426BD795}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64B5AB5A-292A-4E09-B861-E67A426BD795}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AC251A4C-0896-4EF3-8938-497BA2D40ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC251A4C-0896-4EF3-8938-497BA2D40ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC251A4C-0896-4EF3-8938-497BA2D40ABC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AC251A4C-0896-4EF3-8938-497BA2D40ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC251A4C-0896-4EF3-8938-497BA2D40ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC251A4C-0896-4EF3-8938-497BA2D40ABC}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2C09B9B3-A593-4C4A-9AB6-D1407F2D9BA5}
+		SolutionGuid = {C18A8CD7-83A7-4CED-B59A-06954A1F57A6}
 	EndGlobalSection
 EndGlobal

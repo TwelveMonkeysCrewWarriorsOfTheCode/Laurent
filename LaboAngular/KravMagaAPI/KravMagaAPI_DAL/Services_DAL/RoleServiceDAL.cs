@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace KravMagaAPI_DAL.Services_DAL
 {
-    internal class RoleServiceDAL : ICRUDServiceDAL<RoleModelDAL>
+    public class RoleServiceDAL : ICRUDServiceDAL<RoleModelDAL>
     {
         private readonly string _connectionString;
 

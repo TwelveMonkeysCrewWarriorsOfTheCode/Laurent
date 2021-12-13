@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace KravMagaAPI_DAL.Services_DAL
 {
-    internal class LogInServiceDAL
+    public class LogInServiceDAL
     {
         private readonly string _connectionString;
 
