@@ -1,0 +1,9 @@
+<div class="titleContainer">
+  <img src="../../../assets/images/ABKM.jpg" alt="ABKM" />
+  <h2>Bienvenue sur le site de l'ABKM</h2>
+</div>
+<div class="menuContainer">
+  <div class="menuContent" *ngFor="let itemList of menuList; let i = index">
+    <a [routerLink]="[itemList.url]">{{ itemList.title }}</a>
+  </div>
+</div>
