@@ -1,0 +1,26 @@
+<table *ngFor="let member of memberList; let i = index">
+  <tr>
+    <td class="label bkg">Email :</td>
+    <td class="bkg">{{ member.email }}</td>
+  </tr>
+  <tr>
+    <td class="label">Nom :</td>
+    <td>{{ member.lastName }}</td>
+  </tr>
+  <tr>
+    <td class="label bkg">Prénom :</td>
+    <td class="bkg">{{ member.firstName }}</td>
+  </tr>
+  <tr>
+    <td class="label">Adresse :</td>
+    <td>{{ member.adress }}</td>
+  </tr>
+  <tr>
+    <td class="label bkg">Téléphone :</td>
+    <td class="bkg">{{ member.phone }}</td>
+  </tr>
+  <tr>
+    <td class="label">Date de Naissance</td>
+    <td>{{ member.birthDay | date: "d/MM/yyyy" }}</td>
+  </tr>
+</table>

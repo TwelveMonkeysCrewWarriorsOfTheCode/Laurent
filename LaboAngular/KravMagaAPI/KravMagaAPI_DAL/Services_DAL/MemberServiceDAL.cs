@@ -35,7 +35,7 @@ namespace KravMagaAPI_DAL.Services_DAL
                 Phone = reader["Phone"].ToString(),
                 //Subscription = Convert.ToBoolean(reader["Subscription"]),
                 LastDateSubscription = Convert.ToDateTime(reader["LastDateSubscription"]),
-                AutorisationID = (int)reader["AutorisationId"],
+                AuthorisationID = (int)reader["AuthorisationId"],
                 RoleID = (int)reader["RoleId"],
                 BeltID = (int)reader["BeltId"],
                 //AutorisationType = reader["AutorisationType"].ToString(),

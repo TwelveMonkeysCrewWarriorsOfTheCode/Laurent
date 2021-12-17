@@ -18,7 +18,7 @@ namespace KravMagaAPI_DAL.Models_DAL
         public string Phone { get; set; }
         //internal bool Subscription { get; set; }
         public DateTime LastDateSubscription { get; set; }
-        public int AutorisationID { get; set; }
+        public int AuthorisationID { get; set; }
         public int RoleID { get; set; }
         public int BeltID { get; set; }
         //internal string AutorisationType { get; set; }

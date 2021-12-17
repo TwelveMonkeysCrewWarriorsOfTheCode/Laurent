@@ -1,2 +1,2 @@
 ﻿CREATE VIEW [dbo].[V_AutorisationGetAll]
-	AS SELECT * FROM [Autorisations]
+	AS SELECT * FROM [Authorisations]

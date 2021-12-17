@@ -7,8 +7,9 @@ namespace KravMagaAPI.Securities
     {
         public static string Hash(string password)
         {
-            Guid salt = Guid.NewGuid();
-            byte[] bytes = Encoding.UTF8.GetBytes((salt.ToString() ?? "") + password + (salt.ToString() ?? ""));            
+            //Guid salt = Guid.NewGuid();
+            //byte[] bytes = Encoding.UTF8.GetBytes((salt.ToString() ?? "") + password + (salt.ToString() ?? ""));
+            byte[] bytes = Encoding.UTF8.GetBytes(password);
             byte[] encoded = SHA512.Create().ComputeHash(bytes);
             return Encoding.UTF8.GetString(encoded);
         }

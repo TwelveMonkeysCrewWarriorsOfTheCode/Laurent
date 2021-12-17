@@ -29,7 +29,7 @@ namespace KravMagaAPI_DAL.Services_DAL
                 Email = reader["Email"].ToString(),
                 LastName = reader["LastName"].ToString(),
                 FirstName = reader["FirstName"].ToString(),
-                AutorisationID = (int)reader["AutorisationID"]
+                AuthorisationID = (int)reader["AuthorisationID"]
             };
         }
 

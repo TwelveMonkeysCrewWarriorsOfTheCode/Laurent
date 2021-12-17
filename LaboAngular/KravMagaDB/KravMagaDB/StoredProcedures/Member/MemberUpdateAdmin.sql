@@ -2,11 +2,11 @@
 	@Id int,
 	@Subscription BIT,
 	@LastDateSubscription DATETIME,
-	@AutorisationID INT, 
+	@AuthorisationID INT, 
     @RoleID INT, 
     @BeltID INT
 AS
 	UPDATE [Members]
-	SET Subscription = @Subscription, LastDateSubscription = @LastDateSubscription, AutorisationID = @AutorisationID, RoleID = @RoleID, BeltID = @BeltID
+	SET Subscription = @Subscription, LastDateSubscription = @LastDateSubscription, AuthorisationID = @AuthorisationID, RoleID = @RoleID, BeltID = @BeltID
 	WHERE Id = @Id
 

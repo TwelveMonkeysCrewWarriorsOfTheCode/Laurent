@@ -20,7 +20,6 @@ namespace KravMagaAPI.Controllers
             //log.Password = HashPassword.Hash(log.Password);
             BeLoggedModel blm = (_logInService.LogIn(log.LogInModelToLogInModelDAL())).BeLoggedModelDALToBeLoggedModel();           
             return Ok(blm);
-            BCrypt 
         }
     }
 }

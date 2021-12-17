@@ -7,7 +7,7 @@
 h2 {
   display: flex;
   font-size: 4rem;
-  flex: 1;
+  flex: 2;
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -16,8 +16,18 @@ h2 {
   padding: 0;
 }
 
+.userInfo {
+  display: flex;
+  flex: 1;
+}
+
+.imgContainer {
+  display: flex;
+  flex: 1;
+}
+
 img {
-  width: auto;
+  width: 90%;
   height: 90%;
   padding: auto;
   margin: auto;
@@ -42,4 +52,9 @@ a {
   justify-content: center;
   flex: 1;
   font-size: 2rem;
+}
+
+span {
+  display: flex;
+  width: inherit;
 }

@@ -37,11 +37,11 @@ BEGIN
 	DECLARE @password_hash VARBINARY(64);
 	SET @Password_hash = HASHBYTES('SHA2_512', CONCAT(@Salt, 'Admin1979', @Salt));
 END	
-INSERT INTO Members ([Email],[Password],[Salt],[LastName],[FirstName],[BirthDay],[Adress],[Phone],[AutorisationID]) VALUES ('jonxlaurent@gmail.com',@Password_hash,@Salt,'Jonxis','Laurent','1979-07-12','Rue de Bierset 74 4357 Jeneffe','0497/39.40.87',1)
+INSERT INTO Members ([Email],[Password],[Salt],[LastName],[FirstName],[BirthDay],[Adress],[Phone],[AuthorisationID]) VALUES ('jonxlaurent@gmail.com',@Password_hash,@Salt,'Jonxis','Laurent','1979-07-12','Rue de Bierset 74 4357 Jeneffe','0497/39.40.87',2)
 
 BEGIN	
 	SET @Salt = CONCAT(NEWID(), NEWID(), NEWID())
 
 	SET @Password_hash = HASHBYTES('SHA2_512', CONCAT(@Salt, 'User1985', @Salt));
 END	
-INSERT INTO Members ([Email],[Password],[Salt],[LastName],[FirstName],[BirthDay],[Adress],[Phone],[AutorisationID]) VALUES ('coraliejuste@gmail.com',@Password_hash,@Salt,'Juste','Coralie','1985-07-04','Rue de Bierset 74 4357 Jeneffe','0489/28.80.37',2)
+INSERT INTO Members ([Email],[Password],[Salt],[LastName],[FirstName],[BirthDay],[Adress],[Phone],[AuthorisationID]) VALUES ('coraliejuste@gmail.com',@Password_hash,@Salt,'Juste','Coralie','1985-07-04','Rue de Bierset 74 4357 Jeneffe','0489/28.80.37',1)

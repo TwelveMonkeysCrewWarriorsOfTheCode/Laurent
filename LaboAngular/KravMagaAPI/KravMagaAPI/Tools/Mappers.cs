@@ -45,14 +45,19 @@ namespace KravMagaAPI.Tools
 
         public static BeLoggedModel BeLoggedModelDALToBeLoggedModel(this BeLoggedModelDAL blm)
         {
-            return new BeLoggedModel
+            if (blm != null)
             {
-                Id = blm.Id,
-                Email = blm.Email,
-                FirstName = blm.FirstName,
-                LastName = blm.LastName,
-                AutorisationID = blm.AutorisationID,    
-            };
+                return new BeLoggedModel
+                {
+                    Id = blm.Id,
+                    Email = blm.Email,
+                    LastName = blm.LastName,
+                    FirstName = blm.FirstName,
+                    AuthorisationID = blm.AuthorisationID,
+                    LogOk = true
+                };
+            }
+            else return new BeLoggedModel { LogOk = false };
         }
     }
 }

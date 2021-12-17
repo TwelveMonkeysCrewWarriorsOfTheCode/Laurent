@@ -1,9 +1,35 @@
 <div class="titleContainer">
-  <img src="../../../assets/images/ABKM.jpg" alt="ABKM" />
+  <div class="imgContainer">
+    <img src="../../../assets/images/ABKM.jpg" alt="ABKM" />
+  </div>
   <h2>Bienvenue sur le site de l'ABKM</h2>
+  <div class="userInfo" *ngIf="beLogged">
+    <a *ngIf="beLogged.authorisationID == 2" [routerLink]="['home-admin']"
+      >{{ beLogged.lastName }} {{ beLogged.firstName }}</a
+    >
+    <a *ngIf="beLogged.authorisationID == 1" [routerLink]="['home-user']"
+      >{{ beLogged.lastName }} {{ beLogged.firstName }}</a
+    >
+  </div>
+  <div class="userInfo" *ngIf="!beLogged"></div>
 </div>
 <div class="menuContainer">
-  <div class="menuContent" *ngFor="let itemList of menuList; let i = index">
-    <a [routerLink]="[itemList.url]">{{ itemList.title }}</a>
+  <div class="menuContent" *ngIf="!isConnected">
+    <a [routerLink]="['inscription']"> Inscription </a>
+  </div>
+  <div class="menuContent" *ngIf="!isConnected">
+    <a [routerLink]="['connection']">Connection</a>
+  </div>
+  <div class="menuContent" *ngIf="isConnected">
+    <a href="" *ngIf="isConnected" (click)="LogOut()"> Déconnection </a>
+  </div>
+  <div class="menuContent">
+    <a [routerLink]="">Info</a>
+  </div>
+  <div class="menuContent">
+    <a [routerLink]="['stage']">Stage</a>
+  </div>
+  <div class="menuContent">
+    <a [routerLink]="['history']">Histoire</a>
   </div>
 </div>

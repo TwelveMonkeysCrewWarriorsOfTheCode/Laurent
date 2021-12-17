@@ -12,6 +12,6 @@ namespace KravMagaAPI_DAL.Models_DAL
         public string Email { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
-        public int AutorisationID { get; set; }
+        public int AuthorisationID { get; set; }
     }
 }

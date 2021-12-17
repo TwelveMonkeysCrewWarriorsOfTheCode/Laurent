@@ -1,0 +1,28 @@
+.footerContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.copy {
+  width: 50%;
+  font-size: 2rem;
+  margin: auto;
+}
+
+.contact {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  font-size: 2rem;
+}
+
+a {
+  margin: auto;
+}
+
+app-history {
+  width: 100%;
+  height: 100%;
+}

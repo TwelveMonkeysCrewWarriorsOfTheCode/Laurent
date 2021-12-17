@@ -1,0 +1,23 @@
+<div class="tableContainer">
+  <form
+    #connectionForm="ngForm"
+    (ngSubmit)="getConnectionFormData(connectionForm.value)"
+  >
+    <table>
+      <tr>
+        <td class="title" colspan="2">Connection</td>
+      </tr>
+      <tr>
+        <td><label class="label" for="email">Email :</label></td>
+        <td><input class="input" ngModel name="email" type="email" /></td>
+      </tr>
+      <tr>
+        <td><label class="label" for="password">Mot de passe :</label></td>
+        <td><input class="input" ngModel name="password" type="password" /></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button class="btn">Se connecter</button></td>
+      </tr>
+    </table>
+  </form>
+</div>
