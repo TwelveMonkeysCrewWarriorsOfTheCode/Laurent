@@ -1,4 +1,5 @@
 ﻿using KravMagaAPI.Models;
+using KravMagaAPI.Models.LogIn;
 using KravMagaAPI.Securities;
 using KravMagaAPI.Tools;
 using KravMagaAPI_DAL.Interfaces_DAL;
@@ -11,15 +12,15 @@ namespace KravMagaAPI.Controllers
     [ApiController]
     public class MembersController : ControllerBase
     {
-        private readonly ICRUDServiceDAL<MemberModelDAL> _memberService;
-        public MembersController(ICRUDServiceDAL<MemberModelDAL> memberService) =>_memberService = memberService; 
+        private readonly IMemberServiceDAL<MemberModelDAL> _memberService;
+        public MembersController(IMemberServiceDAL<MemberModelDAL> memberService) =>_memberService = memberService; 
 
         [HttpPut]
         public IActionResult InsertMember(MemberInsertModel member)
         {
-            member.Password = HashPassword.Hash(member.Password);
-            _memberService.Create(member.MemberInsertModelToMemberModelDAL());
-            return Ok("Insert ok");
+            //member.Password = HashPassword.Hash(member.Password);
+            BeLoggedModel blm = _memberService.Create(member.MemberInsertModelToMemberModelDAL()).BeLoggedModelDALToBeLoggedModel();
+            return Ok(blm);
         }
 
         [HttpGet]

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,8 @@ import { HomeUserComponent } from './Components/home-user/home-user.component';
 import { MemberProfilComponent } from './Components/member-profil/member-profil.component';
 import { HistoryComponent } from './Components/history/history.component';
 import { FooterComponent } from './Components/footer/footer.component';
+import { EditMemberComponent } from './Components/edit-member/edit-member.component';
+import { InstructorComponent } from './Components/instructor/instructor.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,16 @@ import { FooterComponent } from './Components/footer/footer.component';
     HomeUserComponent,
     MemberProfilComponent,
     HistoryComponent,
-    FooterComponent
+    FooterComponent,
+    EditMemberComponent,
+    InstructorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

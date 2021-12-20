@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace KravMagaAPI_DAL.Services_DAL
 {
-    public class MemberServiceDAL : ICRUDServiceDAL<MemberModelDAL>
+    public class MemberServiceDAL : IMemberServiceDAL<MemberModelDAL>
     {
         private readonly string _connectionString;
 
@@ -44,7 +44,19 @@ namespace KravMagaAPI_DAL.Services_DAL
             };
         }
 
-        public void Create(MemberModelDAL member)
+        public BeLoggedModelDAL ConverterBeLogged(SqlDataReader reader)
+        {
+            return new BeLoggedModelDAL
+            {
+                Id = (int)reader["Id"],
+                Email = reader["Email"].ToString(),
+                LastName = reader["LastName"].ToString(),
+                FirstName = reader["FirstName"].ToString(),
+                AuthorisationID = (int)reader["AuthorisationID"]
+            };
+        }
+
+        public BeLoggedModelDAL Create(MemberModelDAL member)
         {
             Command cmd = new("MemberRegister", true);
             cmd.AddParameter("email", member.Email);
@@ -57,7 +69,7 @@ namespace KravMagaAPI_DAL.Services_DAL
 
             try
             {
-                ToLogIn().ExecuteNonQuery(cmd);
+                return ToLogIn().ExecuteReader(cmd, ConverterBeLogged).FirstOrDefault();
             }
             catch (SqlException e)
             {
@@ -127,7 +139,7 @@ namespace KravMagaAPI_DAL.Services_DAL
             }
         }
 
-        public MemberModelDAL Login(string email, string password)
+        /*public MemberModelDAL Login(string email, string password)
         {
             Command cmd = new("MemberLogin", true);
             cmd.AddParameter("Email", email);
@@ -140,6 +152,6 @@ namespace KravMagaAPI_DAL.Services_DAL
             {
                 throw new Exception(e.Message);
             }
-        }
+        }*/
     }
 }

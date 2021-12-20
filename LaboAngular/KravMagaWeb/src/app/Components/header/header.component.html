@@ -1,8 +1,14 @@
 <div class="titleContainer">
   <div class="imgContainer">
-    <img src="../../../assets/images/ABKM.jpg" alt="ABKM" />
+    <a [routerLink]="['main']">
+      <img src="../../../assets/images/ABKM.jpg" alt="ABKM" />
+    </a>
   </div>
-  <h2>Bienvenue sur le site de l'ABKM</h2>
+  <div class="title">
+    <h2>A.B.K.M</h2>
+    <p>Association Belge de Krav Maga</p>
+  </div>
+
   <div class="userInfo" *ngIf="beLogged">
     <a *ngIf="beLogged.authorisationID == 2" [routerLink]="['home-admin']"
       >{{ beLogged.lastName }} {{ beLogged.firstName }}</a
@@ -24,7 +30,7 @@
     <a href="" *ngIf="isConnected" (click)="LogOut()"> Déconnection </a>
   </div>
   <div class="menuContent">
-    <a [routerLink]="">Info</a>
+    <a [routerLink]="['instructor']">Instructeur</a>
   </div>
   <div class="menuContent">
     <a [routerLink]="['stage']">Stage</a>

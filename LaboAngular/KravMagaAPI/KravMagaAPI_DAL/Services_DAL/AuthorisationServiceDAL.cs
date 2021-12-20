@@ -22,7 +22,7 @@ namespace KravMagaAPI_DAL.Services_DAL
             return new AuthorisationModelDAL
             {
                 Id = (int)reader["Id"],
-                AuthorisationType = reader["AutorisationType"].ToString(),
+                AuthorisationType = reader["AuthorisationType"].ToString(),
             };
         }
 

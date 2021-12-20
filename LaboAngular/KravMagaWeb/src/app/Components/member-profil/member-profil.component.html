@@ -26,4 +26,18 @@
     <td class="label">Date de Naissance</td>
     <td>{{ member.birthDay | date: "d/MM/yyyy" }}</td>
   </tr>
+  <tr></tr>
+  <tr>
+    <td class="label bkg">Ceinture</td>
+    <td class="bkg">{{ member.beltColor }}</td>
+  </tr>
+  <tr>
+    <td class="label">Role</td>
+    <td>{{ member.roleDescription }}</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <a [routerLink]="['../edit-member']">Modifier</a>
+    </td>
+  </tr>
 </table>

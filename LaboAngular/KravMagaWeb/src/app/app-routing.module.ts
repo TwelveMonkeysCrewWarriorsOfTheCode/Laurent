@@ -8,8 +8,12 @@ import { HomeUserComponent } from './Components/home-user/home-user.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { MemberProfilComponent } from './Components/member-profil/member-profil.component';
 import { HistoryComponent } from './Components/history/history.component';
+import { EditMemberComponent } from './Components/edit-member/edit-member.component';
+import { MainComponent } from './Components/main/main.component';
+import { InstructorComponent } from './Components/instructor/instructor.component';
 
 const routes: Routes = [
+  {path: "main", component : MainComponent},
   {path : "inscription", component : InscriptionComponent},
   {path : "connection", component : ConnectionComponent},
   {path : "header", component : HeaderComponent},
@@ -17,7 +21,9 @@ const routes: Routes = [
   {path : "home-admin", component : HomeAdminComponent},
   {path : "home-user", component : HomeUserComponent},
   {path : "member-profil", component : MemberProfilComponent},
-  {path : "history", component : HistoryComponent}
+  {path : "history", component : HistoryComponent},
+  {path : "edit-member", component : EditMemberComponent},
+  {path : "instructor", component : InstructorComponent}
 ];
 
 @NgModule({

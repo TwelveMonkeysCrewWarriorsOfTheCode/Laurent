@@ -7,6 +7,11 @@
       <tr>
         <td class="title" colspan="2">Connection</td>
       </tr>
+      <tr *ngIf="beLogged">
+        <td *ngIf="!beLogged.logOk" colspan="2" class="alert">
+          Email ou mot de passe invalide
+        </td>
+      </tr>
       <tr>
         <td><label class="label" for="email">Email :</label></td>
         <td><input class="input" ngModel name="email" type="email" /></td>

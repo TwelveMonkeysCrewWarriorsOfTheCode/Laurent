@@ -1,0 +1,34 @@
+<table *ngIf="member">
+  <tr>
+    <td colspan="2" class="title">Mon profil</td>
+  </tr>
+  <tr>
+    <td class="label bkg">Email :</td>
+    <td class="bkg"><input value="{{ member.email }}" /></td>
+  </tr>
+  <tr>
+    <td class="label">Nom :</td>
+    <td><input value="{{ member.lastName }}" /></td>
+  </tr>
+  <tr>
+    <td class="label bkg">Prénom</td>
+    <td class="bkg"><input value="{{ member.firstName }}" /></td>
+  </tr>
+  <tr>
+    <td class="label">Adresse</td>
+    <td><input value="{{ member.adress }}" /></td>
+  </tr>
+  <tr>
+    <td class="label bkg">Téléphone</td>
+    <td class="bkg"><input value="{{ member.phone }}" /></td>
+  </tr>
+  <tr>
+    <td class="label">Date de Naissance</td>
+    <td><input value="{{ member.birthDay }}" type="datetime" /></td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <button class="btn">Valider</button>
+    </td>
+  </tr>
+</table>

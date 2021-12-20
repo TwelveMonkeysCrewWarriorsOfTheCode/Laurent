@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICRUDServiceDAL<AuthorisationModelDAL>, AuthorisationServiceDAL>();
 builder.Services.AddScoped<ICRUDServiceDAL<BeltModelDAL>, BeltServiceDAL>();
 builder.Services.AddScoped<LogInServiceDAL>();
-builder.Services.AddScoped<ICRUDServiceDAL<MemberModelDAL>, MemberServiceDAL>();
+builder.Services.AddScoped<IMemberServiceDAL<MemberModelDAL>, MemberServiceDAL>();
 builder.Services.AddScoped<ICRUDServiceDAL<RoleModelDAL>, RoleServiceDAL>();
 
 var app = builder.Build();

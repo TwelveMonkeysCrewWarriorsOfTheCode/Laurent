@@ -16,15 +16,21 @@ export class ConnectionComponent implements OnInit {
   constructor(private connectionData : LogInService, private router:Router) { }
 
   ngOnInit(): void {
+    
   }
 
   getConnectionFormData(data : any){
+
+    //this.beLogged = JSON.parse(localStorage.getItem("beLogged") || 'null');
+    //this.connectionData.isBeLoggedSubject.subscribe((value : BeLogged) => {this.beLogged = value}) 
+      console.log(this.beLogged)
+      console.log(this.beLogged?.logOk)
       this.connectionData.logIn(data).subscribe((result) => {
       this.beLogged = result;
       localStorage.setItem('beLogged', JSON.stringify(this.beLogged))
       console.log(localStorage.getItem('beLogged'));
-      if(this.beLogged.logOk) {this.connectionData.connected()} 
-      (!this.beLogged.logOk)? location.reload():(this.beLogged.authorisationID === 2)? this.router.navigate(["/home-admin"]) :this.router.navigate(["/home-user"]);
+      if(this.beLogged.logOk) {this.connectionData.connected()};
+      (!this.beLogged.logOk)? this.router.navigate(["/connection"]):(this.beLogged.authorisationID === 2)? this.router.navigate(["/home-admin"]) :this.router.navigate(["/home-user"]);
     })
   }
 }

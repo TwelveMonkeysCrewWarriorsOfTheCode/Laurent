@@ -17,5 +17,7 @@ AS
 	END	
 		INSERT INTO Members ([Email], [Password], [Salt], [LastName], [FirstName], [BirthDay], [Adress], [Phone])
 		VALUES (@Email, @password_hash, @Salt, @LastName, @FirstName, @BirthDay, @Adress, @Phone)
+
+		SELECT Id, Email, LastName, FirstName, AuthorisationID FROM [Members] WHERE Id =  SCOPE_IDENTITY()
 	
 

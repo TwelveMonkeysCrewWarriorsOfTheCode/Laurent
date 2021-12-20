@@ -2,13 +2,13 @@
 {
     public class MemberInsertModel
     {
-        internal string Email { get; set; }
-        internal string Password { get; set; }
-        internal string LastName { get; set; }
-        internal string FirstName { get; set; }
-        internal DateTime BirthDay { get; set; }
-        internal string Adress { get; set; }
-        internal string Phone { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public DateTime BirthDay { get; set; }
+        public string Adress { get; set; }
+        public string Phone { get; set; }
 
     }
 }

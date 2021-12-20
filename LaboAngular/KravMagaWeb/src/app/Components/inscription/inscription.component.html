@@ -1,4 +1,7 @@
-<form>
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="getInscriptionFormData(registerForm.value)"
+>
   <table>
     <tr>
       <td class="title" colspan="2">Formulaire d'inscription</td>
@@ -9,13 +12,43 @@
     <tr class="trbkg">
       <td class="label"><label for="email">Email:</label></td>
       <td class="input">
-        <input type="email" name="email" />
+        <input
+          ngModel
+          name="email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+        <div *ngIf="submitted && f.email.errors" class="alert">
+          <div *ngIf="f.email.errors.required">L'email est obligatoire</div>
+          <div *ngIf="f.email.errors.email">
+            Votre adresse email n'est pas valide
+          </div>
+        </div>
       </td>
     </tr>
     <tr class="trbkg">
       <td class="label"><label for="password">Mot de passe :</label></td>
       <td class="input">
-        <input class="inputbkg" type="password" name="password" />
+        <input
+          ngModel
+          type="password"
+          class="inputbkg"
+          name="password"
+          formControlName="password"
+          [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+        />
+        <div *ngIf="submitted && f.password.errors" class="alert">
+          <div *ngIf="f.password.errors.required">
+            Le mot de passe est obligatoire
+          </div>
+          <div *ngIf="f.password.errors.pattern">
+            Le mot de passe doit contenir une majuscule, un chiffre et un
+            caractère spécial
+          </div>
+          <div *ngIf="f.password.errors.password">
+            Votre mot de passe n'est pas valide
+          </div>
+        </div>
       </td>
     </tr>
     <tr class="trbkg">
@@ -23,7 +56,20 @@
         <label for="confirm_password">Confirmer mot de passe :</label>
       </td>
       <td class="input">
-        <input type="password" name="confirm_password" />
+        <input
+          type="password"
+          name="confirm_password"
+          formControlName="confirm_password"
+          [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }"
+        />
+        <div *ngIf="submitted && f.confirm_password.errors" class="alert">
+          <div *ngIf="f.confirm_password.errors.passwordMatch">
+            Les deux mots de passe doivent correspondre
+          </div>
+          <div *ngIf="f.confirm_password.errors.required">
+            Le mot de passe est obligatoire
+          </div>
+        </div>
       </td>
     </tr>
     <tr>
@@ -32,30 +78,87 @@
     <tr class="trbkg">
       <td class="label tdbkg"><label for="lastName">Nom :</label></td>
       <td class="input tdbkg">
-        <input type="text" name="lastName" />
+        <input
+          ngModel
+          name="lastName"
+          formControlName="lastName"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+        <div *ngIf="submitted && f.email.errors" class="alert">
+          <div *ngIf="f.email.errors.required">Le nom est obligatoire</div>
+          <div *ngIf="f.email.errors.email">Votre nom n'est pas valide</div>
+        </div>
       </td>
     </tr>
     <tr class="trbkg">
       <td class="label tdbkg"><label for="firstName">Prénom :</label></td>
       <td class="input tdbkg">
-        <input class="inputbkg" type="text" name="firstName" />
+        <input
+          ngModel
+          class="inputbkg"
+          name="firstName"
+          formControlName="firstName"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+        <div *ngIf="submitted && f.email.errors" class="alert">
+          <div *ngIf="f.email.errors.required">Le prénom est obligatoire</div>
+          <div *ngIf="f.email.errors.email">Votre prénom n'est pas valide</div>
+        </div>
       </td>
     </tr>
     <tr class="trbkg">
       <td class="label"><label for="birthday">Date de naissance :</label></td>
       <td class="input">
-        <input type="date" name="birthday" />
+        <input
+          ngModel
+          type="date"
+          name="birthday"
+          formControlName="birthday"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+        <div *ngIf="submitted && f.email.errors" class="alert">
+          <div *ngIf="f.email.errors.required">
+            La date de naissance est obligatoire
+          </div>
+          <div *ngIf="f.email.errors.email">
+            Votre date de naissance n'est pas valide
+          </div>
+        </div>
       </td>
     </tr>
     <tr class="trbkg">
       <td class="label"><label for="Adress">Adresse :</label></td>
       <td class="input">
-        <input class="inputbkg" type="text" name="adress" />
+        <input
+          ngModel
+          class="inputbkg"
+          name="adress"
+          formControlName="adress"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+        <div *ngIf="submitted && f.email.errors" class="alert">
+          <div *ngIf="f.email.errors.required">L'adresse est obligatoire</div>
+          <div *ngIf="f.email.errors.email">Votre adresse n'est pas valide</div>
+        </div>
       </td>
     </tr>
     <tr class="trbkg">
       <td class="label"><label for="phone">Téléphone :</label></td>
-      <td class="input"><input type="text" name="phone" /></td>
+      <td class="input">
+        <input
+          ngModel
+          name="phone"
+          formControlName="phone"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+        <div *ngIf="submitted && f.email.errors" class="alert">
+          <div *ngIf="f.email.errors.required">L'adresse est obligatoire</div>
+          <div *ngIf="f.email.errors.email">Votre adresse n'est pas valide</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><button class="btn">S'inscrire</button></td>
     </tr>
   </table>
 </form>
